@@ -1,0 +1,566 @@
+# Australian localities for the Swift Dispatch lead sweep.
+# One locality per line, format: "Suburb STATE". Lines starting with # are ignored.
+# Spaced roughly 10-15km apart in metro areas so Places text searches tile each
+# city without excessive overlap. ~440 localities total.
+
+# --- VIC: Melbourne metro ---
+Melbourne VIC
+Surrey Hills VIC
+Box Hill VIC
+Ringwood VIC
+Croydon VIC
+Lilydale VIC
+Bayswater VIC
+Ferntree Gully VIC
+Rowville VIC
+Glen Waverley VIC
+Mount Waverley VIC
+Clayton VIC
+Oakleigh VIC
+Moorabbin VIC
+Cheltenham VIC
+Braeside VIC
+Mordialloc VIC
+Seaford VIC
+Frankston VIC
+Langwarrin VIC
+Cranbourne VIC
+Narre Warren VIC
+Berwick VIC
+Pakenham VIC
+Dandenong VIC
+Keysborough VIC
+Springvale VIC
+Mornington VIC
+Dromana VIC
+Rosebud VIC
+Hastings VIC
+Somerville VIC
+Camberwell VIC
+Hawthorn VIC
+Kew VIC
+Doncaster VIC
+Templestowe VIC
+Eltham VIC
+Diamond Creek VIC
+Greensborough VIC
+Bundoora VIC
+Preston VIC
+Reservoir VIC
+Thomastown VIC
+Epping VIC
+South Morang VIC
+Mernda VIC
+Whittlesea VIC
+Craigieburn VIC
+Somerton VIC
+Glenroy VIC
+Coburg VIC
+Brunswick VIC
+Essendon VIC
+Airport West VIC
+Tullamarine VIC
+Sunbury VIC
+Melton VIC
+Caroline Springs VIC
+Deer Park VIC
+Sunshine VIC
+Footscray VIC
+Altona VIC
+Laverton VIC
+Point Cook VIC
+Werribee VIC
+Hoppers Crossing VIC
+Tarneit VIC
+Wyndham Vale VIC
+Richmond VIC
+Brighton VIC
+Bentleigh VIC
+Carnegie VIC
+Malvern VIC
+
+# --- VIC: Geelong & regional ---
+Geelong VIC
+North Geelong VIC
+Grovedale VIC
+Leopold VIC
+Drysdale VIC
+Ocean Grove VIC
+Torquay VIC
+Lara VIC
+Bannockburn VIC
+Colac VIC
+Warrnambool VIC
+Hamilton VIC
+Portland VIC
+Ballarat VIC
+Wendouree VIC
+Sebastopol VIC
+Bacchus Marsh VIC
+Daylesford VIC
+Maryborough VIC
+Ararat VIC
+Horsham VIC
+Bendigo VIC
+Epsom VIC
+Kangaroo Flat VIC
+Castlemaine VIC
+Kyneton VIC
+Gisborne VIC
+Echuca VIC
+Swan Hill VIC
+Mildura VIC
+Shepparton VIC
+Mooroopna VIC
+Kyabram VIC
+Seymour VIC
+Wallan VIC
+Kilmore VIC
+Benalla VIC
+Wangaratta VIC
+Wodonga VIC
+Yarrawonga VIC
+Healesville VIC
+Yarra Glen VIC
+Warragul VIC
+Drouin VIC
+Moe VIC
+Morwell VIC
+Traralgon VIC
+Sale VIC
+Bairnsdale VIC
+Leongatha VIC
+Wonthaggi VIC
+Phillip Island VIC
+
+# --- NSW: Sydney metro ---
+Sydney NSW
+Alexandria NSW
+Matraville NSW
+Randwick NSW
+Bondi Junction NSW
+Marrickville NSW
+Leichhardt NSW
+Five Dock NSW
+Ryde NSW
+Chatswood NSW
+Brookvale NSW
+Mona Vale NSW
+Terrey Hills NSW
+Belrose NSW
+Hornsby NSW
+Thornleigh NSW
+Castle Hill NSW
+Rouse Hill NSW
+Parklea NSW
+Blacktown NSW
+Marsden Park NSW
+Windsor NSW
+Richmond NSW
+Penrith NSW
+St Marys NSW
+Emu Plains NSW
+Glenmore Park NSW
+Parramatta NSW
+Granville NSW
+Smithfield NSW
+Wetherill Park NSW
+Fairfield NSW
+Liverpool NSW
+Moorebank NSW
+Ingleburn NSW
+Minto NSW
+Campbelltown NSW
+Narellan NSW
+Camden NSW
+Leppington NSW
+Austral NSW
+Bankstown NSW
+Revesby NSW
+Sefton NSW
+Padstow NSW
+Sutherland NSW
+Kirrawee NSW
+Taren Point NSW
+Caringbah NSW
+Engadine NSW
+Helensburgh NSW
+Kurnell NSW
+Silverwater NSW
+Artarmon NSW
+Dural NSW
+Galston NSW
+Kenthurst NSW
+Mulgrave NSW
+Vineyard NSW
+
+# --- NSW: regional ---
+Katoomba NSW
+Lithgow NSW
+Bathurst NSW
+Orange NSW
+Mudgee NSW
+Dubbo NSW
+Parkes NSW
+Forbes NSW
+Cowra NSW
+Young NSW
+Goulburn NSW
+Moss Vale NSW
+Bowral NSW
+Mittagong NSW
+Picton NSW
+Wollongong NSW
+Unanderra NSW
+Dapto NSW
+Albion Park NSW
+Shellharbour NSW
+Kiama NSW
+Nowra NSW
+Ulladulla NSW
+Batemans Bay NSW
+Moruya NSW
+Bega NSW
+Merimbula NSW
+Cooma NSW
+Queanbeyan NSW
+Yass NSW
+Wagga Wagga NSW
+Junee NSW
+Cootamundra NSW
+Tumut NSW
+Griffith NSW
+Leeton NSW
+Narrandera NSW
+Albury NSW
+Lavington NSW
+Corowa NSW
+Deniliquin NSW
+Gosford NSW
+Erina NSW
+Wyong NSW
+Tuggerah NSW
+Ourimbah NSW
+Morisset NSW
+Wyee NSW
+Toronto NSW
+Charlestown NSW
+Newcastle NSW
+Mayfield NSW
+Wallsend NSW
+Cardiff NSW
+Belmont NSW
+Maitland NSW
+Rutherford NSW
+Cessnock NSW
+Kurri Kurri NSW
+Singleton NSW
+Muswellbrook NSW
+Scone NSW
+Raymond Terrace NSW
+Heatherbrae NSW
+Nelson Bay NSW
+Forster NSW
+Taree NSW
+Wauchope NSW
+Port Macquarie NSW
+Kempsey NSW
+Macksville NSW
+Coffs Harbour NSW
+Woolgoolga NSW
+Grafton NSW
+Yamba NSW
+Casino NSW
+Lismore NSW
+Ballina NSW
+Byron Bay NSW
+Mullumbimby NSW
+Murwillumbah NSW
+Tweed Heads NSW
+Kingscliff NSW
+Armidale NSW
+Glen Innes NSW
+Inverell NSW
+Tamworth NSW
+Gunnedah NSW
+Narrabri NSW
+Moree NSW
+Broken Hill NSW
+
+# --- ACT ---
+Canberra ACT
+Fyshwick ACT
+Mitchell ACT
+Hume ACT
+Belconnen ACT
+Tuggeranong ACT
+Gungahlin ACT
+Weston Creek ACT
+
+# --- QLD: Brisbane metro ---
+Brisbane QLD
+Salisbury QLD
+Yeerongpilly QLD
+Acacia Ridge QLD
+Sunnybank QLD
+Underwood QLD
+Springwood QLD
+Loganholme QLD
+Beenleigh QLD
+Yatala QLD
+Capalaba QLD
+Cleveland QLD
+Wynnum QLD
+Tingalpa QLD
+Mount Gravatt QLD
+Carindale QLD
+Darra QLD
+Sumner QLD
+Ipswich QLD
+Goodna QLD
+Springfield QLD
+Forest Lake QLD
+Wacol QLD
+Toowong QLD
+The Gap QLD
+Mitchelton QLD
+Stafford QLD
+Geebung QLD
+Boondall QLD
+Brendale QLD
+Lawnton QLD
+Strathpine QLD
+Petrie QLD
+Kallangur QLD
+North Lakes QLD
+Burpengary QLD
+Caboolture QLD
+Morayfield QLD
+Dayboro QLD
+Samford QLD
+Redcliffe QLD
+Deception Bay QLD
+Albany Creek QLD
+Ferny Grove QLD
+Karalee QLD
+Ripley QLD
+Logan Village QLD
+Jimboomba QLD
+Beaudesert QLD
+
+# --- QLD: Gold Coast / Sunshine Coast / regional ---
+Southport QLD
+Nerang QLD
+Ashmore QLD
+Burleigh Heads QLD
+Mudgeeraba QLD
+Robina QLD
+Tugun QLD
+Coolangatta QLD
+Helensvale QLD
+Oxenford QLD
+Upper Coomera QLD
+Pimpama QLD
+Ormeau QLD
+Nambour QLD
+Maroochydore QLD
+Kawana Waters QLD
+Caloundra QLD
+Beerwah QLD
+Maleny QLD
+Cooroy QLD
+Noosaville QLD
+Gympie QLD
+Maryborough QLD
+Hervey Bay QLD
+Bundaberg QLD
+Gladstone QLD
+Rockhampton QLD
+Yeppoon QLD
+Emerald QLD
+Mackay QLD
+Proserpine QLD
+Bowen QLD
+Ayr QLD
+Townsville QLD
+Stuart QLD
+Thuringowa QLD
+Ingham QLD
+Charters Towers QLD
+Innisfail QLD
+Cairns QLD
+Smithfield QLD
+Gordonvale QLD
+Mareeba QLD
+Atherton QLD
+Port Douglas QLD
+Toowoomba QLD
+Highfields QLD
+Pittsworth QLD
+Dalby QLD
+Chinchilla QLD
+Warwick QLD
+Stanthorpe QLD
+Kingaroy QLD
+Roma QLD
+Mount Isa QLD
+
+# --- SA: Adelaide metro & regional ---
+Adelaide SA
+Hendon SA
+Port Adelaide SA
+Salisbury SA
+Elizabeth SA
+Gawler SA
+Willaston SA
+Golden Grove SA
+Modbury SA
+Holden Hill SA
+Trinity Gardens SA
+Norwood SA
+Glynde SA
+Magill SA
+Mitcham SA
+Blackwood SA
+Marion SA
+Brighton SA
+Reynella SA
+Morphett Vale SA
+Hackham SA
+Aldinga Beach SA
+McLaren Vale SA
+Willunga SA
+Victor Harbor SA
+Goolwa SA
+Strathalbyn SA
+Mount Barker SA
+Hahndorf SA
+Lobethal SA
+Murray Bridge SA
+Mannum SA
+Nuriootpa SA
+Tanunda SA
+Kapunda SA
+Two Wells SA
+Virginia SA
+Port Pirie SA
+Port Augusta SA
+Whyalla SA
+Port Lincoln SA
+Clare SA
+Renmark SA
+Berri SA
+Loxton SA
+Naracoorte SA
+Mount Gambier SA
+Millicent SA
+
+# --- WA: Perth metro & regional ---
+Perth WA
+Osborne Park WA
+Balcatta WA
+Malaga WA
+Wangara WA
+Joondalup WA
+Wanneroo WA
+Neerabup WA
+Yanchep WA
+Ellenbrook WA
+Midland WA
+Bayswater WA
+Belmont WA
+Kewdale WA
+Cannington WA
+Maddington WA
+Gosnells WA
+Armadale WA
+Byford WA
+Mundijong WA
+Jandakot WA
+Bibra Lake WA
+O'Connor WA
+Fremantle WA
+Spearwood WA
+Cockburn Central WA
+Kwinana WA
+Rockingham WA
+Baldivis WA
+Mandurah WA
+Pinjarra WA
+Welshpool WA
+Canning Vale WA
+Forrestfield WA
+Mundaring WA
+Kalamunda WA
+Swan Valley WA
+Bullsbrook WA
+Gingin WA
+Bunbury WA
+Australind WA
+Busselton WA
+Dunsborough WA
+Margaret River WA
+Manjimup WA
+Collie WA
+Donnybrook WA
+Harvey WA
+Waroona WA
+Albany WA
+Denmark WA
+Mount Barker WA
+Esperance WA
+Kalgoorlie WA
+Northam WA
+York WA
+Merredin WA
+Narrogin WA
+Geraldton WA
+Dongara WA
+Carnarvon WA
+Karratha WA
+Port Hedland WA
+Broome WA
+
+# --- TAS ---
+Hobart TAS
+Glenorchy TAS
+Moonah TAS
+Kingston TAS
+Leslie Vale TAS
+Huonville TAS
+Sorell TAS
+Brighton TAS
+New Norfolk TAS
+Richmond TAS
+Launceston TAS
+Mowbray TAS
+Kings Meadows TAS
+Prospect TAS
+Legana TAS
+Longford TAS
+George Town TAS
+Scottsdale TAS
+Deloraine TAS
+Devonport TAS
+Latrobe TAS
+Ulverstone TAS
+Burnie TAS
+Wynyard TAS
+Smithton TAS
+St Helens TAS
+Bicheno TAS
+Swansea TAS
+
+# --- NT ---
+Darwin NT
+Winnellie NT
+Berrimah NT
+Palmerston NT
+Yarrawonga NT
+Howard Springs NT
+Humpty Doo NT
+Coolalinga NT
+Batchelor NT
+Katherine NT
+Tennant Creek NT
+Alice Springs NT
