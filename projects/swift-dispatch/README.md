@@ -13,8 +13,14 @@ on [Surrey Hills Garden Supplies](https://surreyhillsgardensupplies.com.au/)):
 
 | File | What it is |
 |------|------------|
-| `seed-leads.csv` | 110 hand-verified businesses across all 8 states/territories, found via live web research (June 2026). Each has name, location, state, region, website, and a delivery-signal note. |
+| `seed-leads.csv` | 107 hand-verified businesses across all 8 states/territories, found and enriched via live web research (June 2026). Columns: name, location, state, region, phone, email, address, website, notes. 103 have phone numbers, 55 have published emails. One entry (Bayside Garden Supplies) is flagged closed — do not contact. |
 | `localities-au.txt` | 540 Australian suburbs/towns tiling every metro and major regional area, used to drive the Places API sweep. |
+
+**Enrichment notes**: contacts were collected from each business's own website
+and major directories via search. Emails marked here were publicly published;
+where no email is listed the business publishes only a phone number or web
+form (common for small yards — phone-first businesses). Validate all emails
+(see `tools/REGISTRY.md`, Email Validation) before any send.
 
 ## Scaling to 1,000 leads
 
