@@ -54,6 +54,7 @@ Every CLI reads credentials from environment variables:
 | `g2` | `G2_API_TOKEN` |
 | `ga4` | `GA4_ACCESS_TOKEN` |
 | `google-ads` | `GOOGLE_ADS_TOKEN`, `GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID` |
+| `google-places` | `GOOGLE_PLACES_API_KEY` |
 | `google-search-console` | `GSC_ACCESS_TOKEN` |
 | `hotjar` | `HOTJAR_CLIENT_ID`, `HOTJAR_CLIENT_SECRET` |
 | `intercom` | `INTERCOM_API_KEY` |
