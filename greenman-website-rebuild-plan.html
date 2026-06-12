@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Rebuild Plan — GreenMan Property Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #3b82f6;
+  --accent2: #06b6d4;
+  --grad: linear-gradient(135deg, #3b82f6, #06b6d4);
+  --amber: #f59e0b;
+  --green: #22c55e;
+  --red: #ef4444;
+  --bg: #090b15;
+  --bg2: #0e1120;
+  --bg3: #131729;
+  --border: rgba(255,255,255,0.07);
+  --text: #f1f5ff;
+  --muted: rgba(241,245,255,0.5);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
+
+.dot-bg { background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 24px 24px; }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* COVER */
+.cover {
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 4rem 2rem;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%), var(--bg);
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.cover-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 50px; padding: 0.4rem 1.2rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 2rem; position: relative;
+}
+.cover-badge::before { content: '▸'; }
+.cover h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; position: relative; }
+.cover h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cover-sub { font-size: 1.05rem; color: var(--muted); max-width: 580px; margin: 0 auto 3rem; font-weight: 400; line-height: 1.7; }
+
+.cover-stats { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; position: relative; }
+.stat-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.5rem 2rem; text-align: center; min-width: 160px;
+}
+.stat-val { font-size: 2.5rem; font-weight: 800; line-height: 1; }
+.stat-val.good { color: var(--green); }
+.stat-val.warn { color: var(--amber); }
+.stat-val.bad { color: var(--red); }
+.stat-val.blue { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+
+.scroll-cue { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s ease infinite; color: var(--muted); font-size: 1.2rem; }
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* SECTIONS */
+section { padding: 5rem 2rem; }
+.inner { max-width: 960px; margin: 0 auto; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 0.75rem;
+}
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+h2 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.section-sub { font-size: 0.95rem; color: var(--muted); max-width: 600px; line-height: 1.75; margin-bottom: 3rem; }
+
+/* ISSUE CARDS */
+.issues-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+@media (max-width: 640px) { .issues-grid { grid-template-columns: 1fr; } }
+.issue-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.5rem; display: flex; gap: 1rem; align-items: flex-start;
+  transition: border-color 0.2s;
+}
+.issue-card:hover { border-color: rgba(239,68,68,0.3); }
+.issue-card.critical { border-left: 3px solid var(--red); }
+.issue-card.warn { border-left: 3px solid var(--amber); }
+.issue-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.issue-title { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.3rem; }
+.issue-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+.issue-tag {
+  display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 3px; margin-top: 0.5rem;
+}
+.tag-critical { background: rgba(239,68,68,0.12); color: var(--red); }
+.tag-warn { background: rgba(245,158,11,0.12); color: var(--amber); }
+
+/* KEYWORD TABLE */
+.kw-table { width: 100%; border-collapse: collapse; }
+.kw-table th { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+.kw-table td { padding: 0.9rem 1rem; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+.kw-table tr:last-child td { border-bottom: none; }
+.kw-table tr:hover td { background: rgba(255,255,255,0.02); }
+.badge-protect { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.2); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 3px; }
+.badge-recover { background: rgba(245,158,11,0.1); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 3px; }
+.badge-target { background: rgba(59,130,246,0.1); color: var(--accent); border: 1px solid rgba(59,130,246,0.2); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 3px; }
+.pos-good { color: var(--green); font-weight: 700; }
+.pos-warn { color: var(--amber); font-weight: 700; }
+.pos-bad { color: var(--red); font-weight: 700; }
+
+/* CALLOUT */
+.callout {
+  background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 10px; padding: 1.75rem; margin-top: 2rem;
+}
+.callout-head { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+.callout p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+.callout strong { color: var(--text); }
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; }
+.week-block {
+  display: grid; grid-template-columns: 160px 1fr; gap: 0;
+  position: relative;
+}
+.week-block:not(:last-child) .week-pages::before {
+  content: ''; position: absolute; left: 159px; top: 3rem; bottom: 0;
+  width: 1px; background: var(--border); z-index: 0;
+}
+.week-label {
+  padding: 2rem 2rem 2rem 0; text-align: right; position: relative;
+}
+.week-num {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.week-date { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+.week-pages { padding: 2rem 0 2rem 2.5rem; border-left: 1px solid var(--border); position: relative; display: flex; flex-direction: column; gap: 0.75rem; }
+.week-dot {
+  position: absolute; left: -6px; top: 2.35rem;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--grad); flex-shrink: 0;
+}
+.page-pill {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 1rem 1.25rem; display: flex; align-items: flex-start; gap: 0.75rem;
+  transition: border-color 0.2s;
+}
+.page-pill:hover { border-color: rgba(59,130,246,0.3); }
+.page-pill.client-review { border-color: rgba(59,130,246,0.35); background: rgba(59,130,246,0.05); }
+.page-emoji { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.page-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.2rem; }
+.page-kw { font-size: 0.78rem; color: var(--muted); }
+.page-url { font-size: 0.72rem; color: var(--accent); margin-top: 0.2rem; font-family: monospace; }
+.review-chip {
+  display: inline-flex; align-items: center; gap: 0.3rem; margin-left: auto;
+  background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
+  border-radius: 4px; padding: 0.15rem 0.5rem;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+  white-space: nowrap; flex-shrink: 0;
+}
+.milestone-chip {
+  display: inline-flex; align-items: center; gap: 0.3rem; margin-left: auto;
+  background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 4px; padding: 0.15rem 0.5rem;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green);
+  white-space: nowrap; flex-shrink: 0;
+}
+@media (max-width: 640px) {
+  .week-block { grid-template-columns: 1fr; }
+  .week-label { text-align: left; padding: 1.5rem 0 0; }
+  .week-pages { padding: 1rem 0 1rem 1.5rem; }
+}
+
+/* PAGE GRID */
+.pages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+@media (max-width: 700px) { .pages-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .pages-grid { grid-template-columns: 1fr; } }
+.page-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.25rem; transition: border-color 0.2s;
+}
+.page-card:hover { border-color: rgba(59,130,246,0.3); }
+.page-card-num {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.5rem;
+}
+.page-card-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
+.page-card-kw { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; line-height: 1.5; }
+.page-card-url { font-size: 0.68rem; color: var(--accent); font-family: monospace; }
+.page-tag {
+  display: inline-block; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.12rem 0.45rem; border-radius: 3px; margin-bottom: 0.5rem;
+}
+.tag-home { background: rgba(59,130,246,0.12); color: var(--accent); }
+.tag-clean { background: rgba(6,182,212,0.12); color: var(--accent2); }
+.tag-mow { background: rgba(34,197,94,0.12); color: var(--green); }
+.tag-trade { background: rgba(245,158,11,0.12); color: var(--amber); }
+.tag-suburb { background: rgba(168,85,247,0.12); color: #a855f7; }
+
+/* PRIORITY ACTIONS */
+.actions-list { display: flex; flex-direction: column; gap: 1rem; }
+.action-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.5rem; display: grid; grid-template-columns: 48px 1fr auto; gap: 1.25rem; align-items: start;
+}
+.action-num {
+  width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; font-weight: 800; flex-shrink: 0;
+}
+.action-num.p1 { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.25); }
+.action-num.p2 { background: rgba(245,158,11,0.12); color: var(--amber); border: 1px solid rgba(245,158,11,0.25); }
+.action-num.p3 { background: rgba(59,130,246,0.1); color: var(--accent); border: 1px solid rgba(59,130,246,0.25); }
+.action-title { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.35rem; }
+.action-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+.action-effort {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.25rem 0.75rem; border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+}
+.effort-high { background: rgba(239,68,68,0.1); color: var(--red); border: 1px solid rgba(239,68,68,0.2); }
+.effort-med { background: rgba(245,158,11,0.1); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+.effort-low { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
+
+/* SCORECARD */
+.score-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3rem; }
+@media (max-width: 600px) { .score-row { grid-template-columns: 1fr; } }
+.score-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.75rem; text-align: center;
+}
+.score-val { font-size: 3rem; font-weight: 800; line-height: 1; margin-bottom: 0.5rem; }
+.score-val.bad { color: var(--red); }
+.score-val.warn { color: var(--amber); }
+.score-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.35rem; }
+.score-name { font-size: 0.9rem; font-weight: 600; }
+.score-arrow { font-size: 0.75rem; font-weight: 700; margin-top: 0.5rem; }
+.score-arrow.up { color: var(--green); }
+
+/* FOOTER */
+footer {
+  background: var(--bg2); border-top: 1px solid var(--border);
+  padding: 3rem 2rem; text-align: center;
+}
+.footer-logo { font-size: 1rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+.footer-sub { font-size: 0.8rem; color: var(--muted); }
+.footer-link { color: var(--accent); text-decoration: none; }
+.footer-link:hover { text-decoration: underline; }
+
+@media (max-width: 768px) {
+  .action-card { grid-template-columns: 40px 1fr; }
+  .action-effort { display: none; }
+  .cover-stats { gap: 1rem; }
+  .stat-card { min-width: 130px; padding: 1.25rem 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-badge">Website Rebuild Plan · Local Service Pro</div>
+  <h1>GreenMan Property Services<br><span>Your New Ranking Powerhouse</span></h1>
+  <p class="cover-sub">A full rebuild of <strong>greenmanservices.com.au</strong> on Local Service Pro — 15 pages engineered to dominate Mackay searches for lawn mowing, bond cleaning, handyman and property maintenance.</p>
+  <div class="cover-stats reveal">
+    <div class="stat-card">
+      <div class="stat-val blue">15</div>
+      <div class="stat-label">Pages Built</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val warn">8</div>
+      <div class="stat-label">Weeks to Complete</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val good">3</div>
+      <div class="stat-label">Pages by 18 June</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val bad">#70</div>
+      <div class="stat-label">"Lawn Mowing Mackay" Now</div>
+    </div>
+  </div>
+  <div class="scroll-cue">↓</div>
+</section>
+
+<!-- WHY REBUILD -->
+<section style="background: var(--bg2);" class="dot-bg">
+  <div class="inner">
+    <div class="reveal">
+      <div class="eyebrow">Why a Rebuild</div>
+      <h2>Your current site has a <span>strong foundation — but critical blockers</span></h2>
+      <p class="section-sub">The existing site scores 92/100 on technical performance and already earns ~148 visits a month. But it's being held back by fixable problems that are costing you leads every single day.</p>
+    </div>
+    <div class="issues-grid reveal">
+
+      <div class="issue-card critical">
+        <div class="issue-icon">❌</div>
+        <div>
+          <div class="issue-title">New York Contact Block Live on Homepage</div>
+          <div class="issue-desc">The site is publicly showing "123 Fifth Avenue, New York, USA" as a contact address. Google can't confirm you're a Mackay business, destroying local trust and map-pack rankings.</div>
+          <span class="issue-tag tag-critical">Critical</span>
+        </div>
+      </div>
+
+      <div class="issue-card critical">
+        <div class="issue-icon">❌</div>
+        <div>
+          <div class="issue-title">"Lawn Mowing Mackay" Mapped to Wrong Page</div>
+          <div class="issue-desc">Your #1 keyword (260 searches/month) is currently ranking #70 — and pointing to the gardening page instead of the lawn mowing page. It's invisible to anyone searching it.</div>
+          <span class="issue-tag tag-critical">Critical</span>
+        </div>
+      </div>
+
+      <div class="issue-card critical">
+        <div class="issue-icon">❌</div>
+        <div>
+          <div class="issue-title">Zero Schema Markup Sitewide</div>
+          <div class="issue-desc">No LocalBusiness, Service, FAQPage or AggregateRating schema exists anywhere. Google and AI engines can't understand what your business does, where you are, or what you charge.</div>
+          <span class="issue-tag tag-critical">Critical</span>
+        </div>
+      </div>
+
+      <div class="issue-card critical">
+        <div class="issue-icon">❌</div>
+        <div>
+          <div class="issue-title">Template Filler Text Still Published</div>
+          <div class="issue-desc">"Tell people about what you've been doing…" dummy content and placeholder Read More blocks are live on the homepage — an immediate credibility killer with new visitors.</div>
+          <span class="issue-tag tag-critical">Critical</span>
+        </div>
+      </div>
+
+      <div class="issue-card warn">
+        <div class="issue-icon">⚠️</div>
+        <div>
+          <div class="issue-title">Wrong Facebook Publisher Linked</div>
+          <div class="issue-desc">The article:publisher meta points to "greenmanboutiqueservices" — a different entity. This confuses Google's entity graph and undermines brand trust signals.</div>
+          <span class="issue-tag tag-warn">Needs Fix</span>
+        </div>
+      </div>
+
+      <div class="issue-card warn">
+        <div class="issue-icon">⚠️</div>
+        <div>
+          <div class="issue-title">No Google Analytics or Search Console</div>
+          <div class="issue-desc">Neither is connected. There is currently zero first-party data on what's driving traffic, which keywords are converting, or how users behave on the site.</div>
+          <span class="issue-tag tag-warn">Needs Fix</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-head">📍 The Opportunity</div>
+      <p>The site already ranks for <strong>72 keywords</strong> including <strong>handyman mackay #5</strong> and <strong>landscaping mackay #5</strong> — with a domain authority of 15 and 196 backlinks. The technical chassis is strong. The rebuild doesn't start from scratch — it <strong>removes the blockers and builds a proper lead generation system</strong> on top of what's already working.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENT RANKINGS -->
+<section style="background: var(--bg);" class="dot-bg">
+  <div class="inner">
+    <div class="reveal">
+      <div class="eyebrow">Keyword Strategy</div>
+      <h2>Rankings to <span>protect, recover & own</span></h2>
+      <p class="section-sub">You're already on page 1 for high-value terms. The rebuild locks those in, recovers the keywords sliding down page 2, and conquers the primary target that's currently buried at #70.</p>
+    </div>
+
+    <div style="background:var(--bg2); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:2rem;" class="reveal">
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Monthly Searches</th>
+            <th>Current Rank</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>handyman mackay</strong></td>
+            <td>390</td>
+            <td class="pos-good">#5</td>
+            <td><span class="badge-protect">Protect</span></td>
+          </tr>
+          <tr>
+            <td><strong>landscaping mackay</strong></td>
+            <td>260</td>
+            <td class="pos-good">#5</td>
+            <td><span class="badge-protect">Protect</span></td>
+          </tr>
+          <tr>
+            <td><strong>lawn mowing mackay</strong></td>
+            <td>260</td>
+            <td class="pos-bad">#70</td>
+            <td><span class="badge-target">Primary Target</span></td>
+          </tr>
+          <tr>
+            <td><strong>cleaners mackay</strong></td>
+            <td>260</td>
+            <td class="pos-bad">#33</td>
+            <td><span class="badge-recover">Recover</span></td>
+          </tr>
+          <tr>
+            <td><strong>mackay bond cleaners</strong></td>
+            <td>170</td>
+            <td class="pos-good">#10</td>
+            <td><span class="badge-protect">Protect</span></td>
+          </tr>
+          <tr>
+            <td><strong>bond cleaning mackay</strong></td>
+            <td>210</td>
+            <td class="pos-warn">#16</td>
+            <td><span class="badge-recover">Recover</span></td>
+          </tr>
+          <tr>
+            <td><strong>mackay house cleaning</strong></td>
+            <td>140</td>
+            <td class="pos-bad">#44</td>
+            <td><span class="badge-recover">Recover</span></td>
+          </tr>
+          <tr>
+            <td><strong>pressure washing mackay</strong></td>
+            <td>110</td>
+            <td class="pos-bad">#51</td>
+            <td><span class="badge-recover">Recover</span></td>
+          </tr>
+          <tr>
+            <td><strong>property maintenance mackay</strong></td>
+            <td>50</td>
+            <td class="pos-good">#5</td>
+            <td><span class="badge-protect">Protect</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="score-row reveal">
+      <div class="score-card">
+        <div class="score-label">SEO Score Now</div>
+        <div class="score-val warn">6<span style="font-size:1.5rem; color:var(--muted)">/10</span></div>
+        <div class="score-name">Traditional Search</div>
+        <div class="score-arrow up">→ Target: 9/10</div>
+      </div>
+      <div class="score-card">
+        <div class="score-label">GEO Score Now</div>
+        <div class="score-val bad">3<span style="font-size:1.5rem; color:var(--muted)">/10</span></div>
+        <div class="score-name">AI / Generative Search</div>
+        <div class="score-arrow up">→ Target: 8/10</div>
+      </div>
+      <div class="score-card">
+        <div class="score-label">AEO Score Now</div>
+        <div class="score-val bad">3<span style="font-size:1.5rem; color:var(--muted)">/10</span></div>
+        <div class="score-name">Voice / Answer Search</div>
+        <div class="score-arrow up">→ Target: 8/10</div>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-head">🤖 2026 Search Has Changed</div>
+      <p>Google AI Overviews now appear for nearly all local service queries. To get featured, every page needs <strong>FAQ schema with direct 40–60 word answers</strong>, <strong>LocalBusiness + Service schema</strong>, and consistent NAP data. This is exactly what the new site will have — and where competitors are still behind.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 15 PAGES -->
+<section style="background: var(--bg2);" class="dot-bg">
+  <div class="inner">
+    <div class="reveal">
+      <div class="eyebrow">The 15-Page Plan</div>
+      <h2>Every page has <span>one job — rank and convert</span></h2>
+      <p class="section-sub">Each page targets a specific keyword, carries the right schema markup, and links to the others. No duplication, no cannibalisation — a clean, connected site architecture.</p>
+    </div>
+
+    <div class="pages-grid reveal">
+
+      <div class="page-card">
+        <div class="page-tag tag-home">Homepage</div>
+        <div class="page-card-num">Page 01</div>
+        <div class="page-card-title">🏠 Homepage</div>
+        <div class="page-card-kw">lawn mowing mackay · property maintenance mackay</div>
+        <div class="page-card-url">/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-clean">Cleaning</div>
+        <div class="page-card-num">Page 02</div>
+        <div class="page-card-title">🧹 Bond Cleaning</div>
+        <div class="page-card-kw">bond cleaning mackay · end of lease cleaning mackay</div>
+        <div class="page-card-url">/bond-cleaning-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-mow">Mowing</div>
+        <div class="page-card-num">Page 03</div>
+        <div class="page-card-title">🌿 Lawn Mowing</div>
+        <div class="page-card-kw">lawn mowing mackay · mowing service mackay</div>
+        <div class="page-card-url">/lawn-mowing-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-clean">Cleaning</div>
+        <div class="page-card-num">Page 04</div>
+        <div class="page-card-title">💧 Pressure Washing</div>
+        <div class="page-card-kw">pressure washing mackay · soft washing mackay</div>
+        <div class="page-card-url">/pressure-washing-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-clean">Cleaning</div>
+        <div class="page-card-num">Page 05</div>
+        <div class="page-card-title">🏡 House Cleaning</div>
+        <div class="page-card-kw">house cleaning mackay · cleaners mackay</div>
+        <div class="page-card-url">/house-cleaning-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-trade">Trade</div>
+        <div class="page-card-num">Page 06</div>
+        <div class="page-card-title">🔧 Handyman</div>
+        <div class="page-card-kw">handyman mackay · handyman services mackay</div>
+        <div class="page-card-url">/handyman-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-trade">Trade</div>
+        <div class="page-card-num">Page 07</div>
+        <div class="page-card-title">🌳 Landscaping</div>
+        <div class="page-card-kw">landscaping mackay · mackay landscaping</div>
+        <div class="page-card-url">/landscaping-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-clean">Cleaning</div>
+        <div class="page-card-num">Page 08</div>
+        <div class="page-card-title">🌧️ Gutter Cleaning</div>
+        <div class="page-card-kw">gutter cleaning mackay · gutter cleaners mackay</div>
+        <div class="page-card-url">/gutter-cleaning-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-mow">Mowing</div>
+        <div class="page-card-num">Page 09</div>
+        <div class="page-card-title">🌱 Gardening</div>
+        <div class="page-card-kw">gardening services mackay · garden maintenance mackay</div>
+        <div class="page-card-url">/gardening-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-suburb">Suburb</div>
+        <div class="page-card-num">Page 10</div>
+        <div class="page-card-title">🧹 Bond Clean · Andergrove</div>
+        <div class="page-card-kw">bond cleaning andergrove · end of lease andergrove</div>
+        <div class="page-card-url">/bond-cleaning-andergrove/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-suburb">Suburb</div>
+        <div class="page-card-num">Page 11</div>
+        <div class="page-card-title">🧹 Bond Clean · North Mackay</div>
+        <div class="page-card-kw">bond cleaning north mackay</div>
+        <div class="page-card-url">/bond-cleaning-north-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-suburb">Suburb</div>
+        <div class="page-card-num">Page 12</div>
+        <div class="page-card-title">🧹 Bond Clean · Slade Point</div>
+        <div class="page-card-kw">bond cleaning slade point · bond cleaning east mackay</div>
+        <div class="page-card-url">/bond-cleaning-slade-point/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-suburb">Suburb</div>
+        <div class="page-card-num">Page 13</div>
+        <div class="page-card-title">🌿 Mowing · Andergrove</div>
+        <div class="page-card-kw">lawn mowing andergrove · grass cutting andergrove</div>
+        <div class="page-card-url">/lawn-mowing-andergrove/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-suburb">Suburb</div>
+        <div class="page-card-num">Page 14</div>
+        <div class="page-card-title">🌿 Mowing · North Mackay</div>
+        <div class="page-card-kw">lawn mowing north mackay</div>
+        <div class="page-card-url">/lawn-mowing-north-mackay/</div>
+      </div>
+
+      <div class="page-card">
+        <div class="page-tag tag-suburb">Suburb</div>
+        <div class="page-card-num">Page 15</div>
+        <div class="page-card-title">🌿 Mowing · Marian</div>
+        <div class="page-card-kw">lawn mowing marian · mowing services marian</div>
+        <div class="page-card-url">/lawn-mowing-marian/</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section style="background: var(--bg);" class="dot-bg">
+  <div class="inner">
+    <div class="reveal">
+      <div class="eyebrow">Build Timeline</div>
+      <h2>8 weeks from <span>first page to full launch</span></h2>
+      <p class="section-sub">Priority order: Home first, then cleaning, then mowing, then trades, then suburb pages. Three pages are ready for your review by 18 June.</p>
+    </div>
+
+    <div class="timeline reveal">
+
+      <div class="week-block">
+        <div class="week-label">
+          <div class="week-num">Week 1</div>
+          <div class="week-date">Due 18 June</div>
+        </div>
+        <div class="week-pages">
+          <div class="week-dot"></div>
+          <div class="page-pill client-review">
+            <div class="page-emoji">🏠</div>
+            <div>
+              <div class="page-name">Homepage</div>
+              <div class="page-kw">lawn mowing mackay · property maintenance mackay</div>
+            </div>
+            <span class="review-chip">Client Review</span>
+          </div>
+          <div class="page-pill client-review">
+            <div class="page-emoji">🧹</div>
+            <div>
+              <div class="page-name">Bond Cleaning Mackay</div>
+              <div class="page-kw">bond cleaning mackay (210/mo)</div>
+            </div>
+            <span class="review-chip">Client Review</span>
+          </div>
+          <div class="page-pill client-review">
+            <div class="page-emoji">🌿</div>
+            <div>
+              <div class="page-name">Lawn Mowing Mackay</div>
+              <div class="page-kw">lawn mowing mackay — fixes #70 ranking</div>
+            </div>
+            <span class="review-chip">Client Review</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">
+          <div class="week-num">Week 2</div>
+          <div class="week-date">Due 25 June</div>
+        </div>
+        <div class="week-pages">
+          <div class="week-dot"></div>
+          <div class="page-pill">
+            <div class="page-emoji">💧</div>
+            <div>
+              <div class="page-name">Pressure Washing Mackay</div>
+              <div class="page-kw">pressure washing mackay (110/mo, currently #51)</div>
+            </div>
+          </div>
+          <div class="page-pill">
+            <div class="page-emoji">🏡</div>
+            <div>
+              <div class="page-name">House Cleaning Mackay</div>
+              <div class="page-kw">cleaners mackay (260/mo, currently #33)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">
+          <div class="week-num">Week 3</div>
+          <div class="week-date">Due 2 July</div>
+        </div>
+        <div class="week-pages">
+          <div class="week-dot"></div>
+          <div class="page-pill">
+            <div class="page-emoji">🔧</div>
+            <div>
+              <div class="page-name">Handyman Mackay</div>
+              <div class="page-kw">handyman mackay (390/mo, currently #5 — protect)</div>
+            </div>
+          </div>
+          <div class="page-pill">
+            <div class="page-emoji">🌳</div>
+            <div>
+              <div class="page-name">Landscaping Mackay</div>
+              <div class="page-kw">landscaping mackay (260/mo, currently #5 — protect)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">
+          <div class="week-num">Week 4</div>
+          <div class="week-date">Due 9 July</div>
+        </div>
+        <div class="week-pages">
+          <div class="week-dot"></div>
+          <div class="page-pill">
+            <div class="page-emoji">🌧️</div>
+            <div>
+              <div class="page-name">Gutter Cleaning Mackay</div>
+              <div class="page-kw">gutter cleaning mackay</div>
+            </div>
+          </div>
+          <div class="page-pill">
+            <div class="page-emoji">🌱</div>
+            <div>
+              <div class="page-name">Gardening Services Mackay</div>
+              <div class="page-kw">gardening services mackay (resolves keyword cannibalisation)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">
+          <div class="week-num">Weeks 5–6</div>
+          <div class="week-date">Due 23 July</div>
+        </div>
+        <div class="week-pages">
+          <div class="week-dot"></div>
+          <div class="page-pill">
+            <div class="page-emoji">🧹</div>
+            <div>
+              <div class="page-name">Bond Clean — Andergrove</div>
+              <div class="page-kw">bond cleaning andergrove</div>
+            </div>
+          </div>
+          <div class="page-pill">
+            <div class="page-emoji">🧹</div>
+            <div>
+              <div class="page-name">Bond Clean — North Mackay</div>
+              <div class="page-kw">bond cleaning north mackay</div>
+            </div>
+          </div>
+          <div class="page-pill">
+            <div class="page-emoji">🧹</div>
+            <div>
+              <div class="page-name">Bond Clean — Slade Point</div>
+              <div class="page-kw">bond cleaning slade point / east mackay</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">
+          <div class="week-num">Weeks 7–8</div>
+          <div class="week-date">Due 6 August</div>
+        </div>
+        <div class="week-pages">
+          <div class="week-dot"></div>
+          <div class="page-pill">
+            <div class="page-emoji">🌿</div>
+            <div>
+              <div class="page-name">Lawn Mowing — Andergrove</div>
+              <div class="page-kw">lawn mowing andergrove</div>
+            </div>
+          </div>
+          <div class="page-pill">
+            <div class="page-emoji">🌿</div>
+            <div>
+              <div class="page-name">Lawn Mowing — North Mackay</div>
+              <div class="page-kw">lawn mowing north mackay</div>
+            </div>
+          </div>
+          <div class="page-pill">
+            <div class="page-emoji">🌿</div>
+            <div>
+              <div class="page-name">Lawn Mowing — Marian</div>
+              <div class="page-kw">lawn mowing marian</div>
+            </div>
+            <span class="milestone-chip">Site Complete</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S IN EVERY PAGE -->
+<section style="background: var(--bg2);" class="dot-bg">
+  <div class="inner">
+    <div class="reveal">
+      <div class="eyebrow">Built-In Standards</div>
+      <h2>What every page <span>gets as standard</span></h2>
+      <p class="section-sub">Every page in the rebuild is built to rank from day one — not patched after the fact.</p>
+    </div>
+    <div class="actions-list reveal">
+
+      <div class="action-card">
+        <div class="action-num p1">1</div>
+        <div>
+          <div class="action-title">Schema Markup on Every Page</div>
+          <div class="action-desc">LocalBusiness schema on the homepage. Service schema on every service page. FAQPage schema on every FAQ section. AggregateRating schema tied to your 4.4★ / 28 reviews. This is what Google AI Overviews pull from — and what most competitors are missing entirely.</div>
+        </div>
+        <span class="action-effort effort-low">Built In</span>
+      </div>
+
+      <div class="action-card">
+        <div class="action-num p1">2</div>
+        <div>
+          <div class="action-title">Real Mackay NAP — No Placeholders</div>
+          <div class="action-desc">Slade Point Road, Slade Point QLD 4740 · (07) 4955 0992 · admin@greenmanservices.com.au — consistent across every page, header, footer, and schema block. Matching exactly to your Google Business Profile for maximum map-pack authority.</div>
+        </div>
+        <span class="action-effort effort-low">Built In</span>
+      </div>
+
+      <div class="action-card">
+        <div class="action-num p1">3</div>
+        <div>
+          <div class="action-title">Primary Keyword in Title, H1 & First Paragraph</div>
+          <div class="action-desc">Every page targets one primary keyword and has it placed exactly where Google looks first — the meta title, H1 heading, and opening sentence. No more "lawn mowing mackay" ranking at #70 on the wrong page.</div>
+        </div>
+        <span class="action-effort effort-low">Built In</span>
+      </div>
+
+      <div class="action-card">
+        <div class="action-num p2">4</div>
+        <div>
+          <div class="action-title">FAQ Section with Direct-Answer Formatting</div>
+          <div class="action-desc">Every page includes 4–6 FAQs with 40–60 word direct answers formatted for AI Overviews and voice search. Questions are phrased exactly how Mackay residents search: "How much does bond cleaning cost in Mackay?", "Do you service Andergrove?"</div>
+        </div>
+        <span class="action-effort effort-low">Built In</span>
+      </div>
+
+      <div class="action-card">
+        <div class="action-num p2">5</div>
+        <div>
+          <div class="action-title">Internal Linking Structure</div>
+          <div class="action-desc">Every service page links to related pages with descriptive anchor text. Suburb pages link up to their parent service page. The homepage links to all 8 service pages. Authority flows through the whole site instead of being trapped in isolated pages.</div>
+        </div>
+        <span class="action-effort effort-low">Built In</span>
+      </div>
+
+      <div class="action-card">
+        <div class="action-num p3">6</div>
+        <div>
+          <div class="action-title">Google Analytics + Search Console Connected at Launch</div>
+          <div class="action-desc">Both will be connected from day one so you have real data on traffic, keyword rankings, and conversions from the moment the site goes live. No more flying blind.</div>
+        </div>
+        <span class="action-effort effort-low">Built In</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Local Service Pro</div>
+  <p class="footer-sub">Website Rebuild Plan — GreenMan Property Services · <a class="footer-link" href="https://greenmanservices.com.au/" target="_blank">greenmanservices.com.au</a></p>
+  <p class="footer-sub" style="margin-top:0.5rem; font-size:0.72rem;">Prepared by Local Service Pro · <a class="footer-link" href="https://www.localservicepro.com.au" target="_blank">localservicepro.com.au</a></p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
