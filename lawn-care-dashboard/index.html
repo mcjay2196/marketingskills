@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Lawn Care Profit &amp; Capacity Benchmark Calculator — Local Service Pro</title>
-<meta name="description" content="See your real lawn care numbers — average $/job, $/hour on the tools, close rate — and add them to the Australian industry benchmark so every operator can price with confidence. Free, no selling. By Local Service Pro." />
+<meta name="description" content="See your real lawn care numbers — average $/job, $/hour on the tools, close rate — and add them to the Australian industry benchmark so every operator can price with confidence. By Local Service Pro." />
 <style>
   :root{
     --bg:#0a100d;
@@ -227,7 +227,7 @@
   <div class="wrap">
     <span class="brand">🌿 Local Service Pro</span>
     <h1>Lawn Care Profit &amp; Capacity Benchmark Calculator</h1>
-    <p class="sub">See your real numbers — average $/job, $/hour on the tools, close rate — and add them to the Australian lawn care benchmark. No selling. Just a clearer picture for every operator.</p>
+    <p class="sub">See your real numbers — average $/job, $/hour on the tools, close rate — and add them to the Australian lawn care benchmark. A clearer picture for every operator.</p>
     <div class="trust"><span>🇦🇺 Built for Aussie operators</span><span>⏱ Takes ~3 minutes</span><span>🌊 A rising tide lifts all boats</span></div>
   </div>
 </header>
@@ -270,14 +270,14 @@
       <div class="formnote" id="note1"></div>
     </section>
 
-    <!-- STEP 2: About you -->
-    <section class="step card hidden" data-step="2">
-      <h2><span class="step-no">2</span> Where do we send your report?</h2>
-      <p class="hint">We'll email your personalised benchmark and use your numbers (anonymously) to build the industry benchmark.</p>
+    <!-- STEP 3: Your details (last) -->
+    <section class="step card hidden" data-step="3">
+      <h2><span class="step-no">3</span> Where do we send your report?</h2>
+      <p class="hint">Last step. Add your details and we'll email your personalised benchmark — plus the full Australian industry report once 1,000 operators have taken part.</p>
       <div class="grid2">
         <div class="field"><label>First name</label><input id="f_name" placeholder="Jordan" /></div>
         <div class="field"><label>Email</label><input id="f_email" type="email" placeholder="you@business.com.au" /></div>
-        <div class="field"><label>Phone <span class="opt">(for your strategy call)</span></label><input id="f_phone" type="tel" placeholder="0400 000 000" /></div>
+        <div class="field"><label>Phone <span class="opt">(optional)</span></label><input id="f_phone" type="tel" placeholder="0400 000 000" /></div>
         <div class="field"><label>Business name</label><input id="f_business" placeholder="Jordan's Lawn Care" /></div>
         <div class="field"><label>Website <span class="opt">(optional)</span></label><input id="f_website" placeholder="yourbusiness.com.au" /></div>
         <div class="field"><label>State</label>
@@ -285,16 +285,23 @@
         </div>
       </div>
       <div class="field" style="margin-top:14px"><label>Main service area <span class="opt">(suburb / region you mostly work)</span></label><input id="f_area" placeholder="e.g. Northern Brisbane suburbs" /></div>
-      <div class="btnrow">
-        <button class="btn ghost" onclick="goStep(1)">← Back</button>
-        <button class="btn primary" onclick="goStep(3)">Continue →</button>
+
+      <div class="consent">
+        <input type="checkbox" id="chk_consent" />
+        <label for="chk_consent" style="margin:0;font-weight:600">Email me my benchmark results and the Australian lawn care industry report when it's published.</label>
       </div>
-      <div class="formnote" id="note2"></div>
+      <p class="privacy">We'll use your anonymous business data to help build lawn care industry benchmarks. Your individual details will never be published without permission, and we won't sell your data.</p>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goStep(2)">← Back</button>
+        <button class="btn primary" id="generateBtn" onclick="generate()">Get My Lawn Care Benchmark →</button>
+      </div>
+      <div class="formnote" id="note3"></div>
     </section>
 
-    <!-- STEP 3: Your numbers -->
-    <section class="step card hidden" data-step="3">
-      <h2><span class="step-no">3</span> Your numbers</h2>
+    <!-- STEP 2: Your numbers -->
+    <section class="step card hidden" data-step="2">
+      <h2><span class="step-no">2</span> Your numbers</h2>
       <p class="hint">Estimates are fine — adjust anything that doesn't fit. Defaults are pre-filled from typical Aussie lawn care operators.</p>
 
       <div class="sectiontitle"><span class="dot"></span> Revenue &amp; leads</div>
@@ -355,17 +362,11 @@
         </div>
       </details>
 
-      <div class="consent">
-        <input type="checkbox" id="chk_consent" />
-        <label for="chk_consent" style="margin:0;font-weight:600">Email me my benchmark results and the Australian lawn care industry report when it's published.</label>
-      </div>
-      <p class="privacy">We'll use your anonymous business data to help build lawn care industry benchmarks. Your individual details will never be published without permission, and we won't sell your data.</p>
-
       <div class="btnrow">
-        <button class="btn ghost" onclick="goStep(2)">← Back</button>
-        <button class="btn primary" id="generateBtn" onclick="generate()">Get My Lawn Care Benchmark →</button>
+        <button class="btn ghost" onclick="goStep(1)">← Back</button>
+        <button class="btn primary" onclick="goStep(3)">Continue →</button>
       </div>
-      <div class="formnote" id="note3"></div>
+      <div class="formnote" id="note2"></div>
     </section>
   </div>
 
@@ -430,7 +431,7 @@
     <!-- Industry benefit / rising tide -->
     <div class="cta-final">
       <h2>🌊 Your numbers are now part of the benchmark</h2>
-      <p>This isn't about selling you anything. When enough operators share real numbers — average $/job, $/hour on the tools, close rates — we can publish an honest Australian benchmark. That's how we stop the race to the bottom, where people undercharge until no one makes a profit.</p>
+      <p>When enough operators share real numbers — average $/job, $/hour on the tools, close rates — we can publish an honest Australian benchmark. That's how we stop the race to the bottom, where people undercharge until no one makes a profit.</p>
       <p style="margin-top:10px">Know another lawn care operator? Send them the calculator. The more who add their numbers, the sharper and fairer the benchmark gets — for everyone.</p>
     </div>
 
@@ -533,13 +534,10 @@ const isSoloReport = t => ["solo","parttime","shift"].includes(t);
 /* ---------- Wizard ---------- */
 function goStep(n){
   if(n===2 && !state.type){ return showNote("note1","Please pick the option that best describes you."); }
-  if(n===3){
-    if(!val("f_name") || !val("f_email")){ return showNote("note2","Please add your first name and email so we can send your report."); }
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("f_email"))){ return showNote("note2","That email doesn't look right — please check it."); }
-  }
+  if(n===3 && !num("n_revenue")){ return showNote("note2","Please add your annual revenue so we can build your benchmark."); }
   document.querySelectorAll(".step").forEach(s=>s.classList.toggle("hidden", s.dataset.step!=String(n)));
   document.querySelectorAll(".progress-bar .seg").forEach(s=>s.classList.toggle("on", +s.dataset.seg<=n));
-  $("stepLabel").textContent = `Step ${n} of 3 — ${["","Your business type","Your details","Your numbers"][n]}`;
+  $("stepLabel").textContent = `Step ${n} of 3 — ${["","Your business type","Your numbers","Your details"][n]}`;
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function showNote(id,msg){ const e=$(id); e.className="formnote err"; e.textContent=msg; return false; }
@@ -733,8 +731,10 @@ function setMode(m){
 
 /* ---------- Submit ---------- */
 async function generate(){
-  if(!num("n_revenue")) return showNote("note3","Please add your annual revenue so we can build your benchmark.");
+  if(!val("f_name") || !val("f_email")) return showNote("note3","Please add your first name and email so we can send your report.");
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("f_email"))) return showNote("note3","That email doesn't look right — please check it.");
   if(!$("chk_consent").checked) return showNote("note3","Please tick the consent box so we can email your report.");
+  if(!num("n_revenue")) return showNote("note2","Please go back to step 2 and add your annual revenue.");
 
   const r = compute();
   state.results = r;
@@ -806,7 +806,7 @@ async function generate(){
 function editAnswers(){
   $("report").style.display="none";
   $("form-steps").classList.remove("hidden");
-  goStep(3);
+  goStep(2);
 }
 
 /* ---------- Counter ---------- */

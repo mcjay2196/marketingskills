@@ -20,8 +20,8 @@ For operators doing roughly **$60k–$250k/year** — solo, part-time, shift-wor
 ## What it does
 
 1. **Business type** — Solo / Part-Time / Shift Worker / Planning to hire / Already has staff / Team. Drives a **Solo Operator** vs **Team Business** report.
-2. **Contact capture** — name, email, phone, business, website, state, service area.
-3. **Your numbers** — revenue, enquiries, lead source, pricing, close/recurring/churn sliders, recurring clients, jobs/week, owner & admin hours, staff, VA — with editable advanced assumptions.
+2. **Your numbers** — revenue, enquiries, lead source, pricing, close/recurring/churn sliders, recurring clients, jobs/week, owner & admin hours, staff, VA — with editable advanced assumptions.
+3. **Contact details (last)** — name, email, phone, business, website, state, service area — collected only after the operator has entered their numbers, so the report can be emailed once the benchmark reaches 1,000 submissions.
 4. **Instant report**, including:
    - **Current snapshot** (revenue/hour, capacity used, close & recurring rates…)
    - **Rates spotlight** — headline **average $/job** and **$/hour on the tools** (the core industry-benchmark numbers), framed around not undercharging.
