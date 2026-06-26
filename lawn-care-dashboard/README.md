@@ -1,93 +1,129 @@
-# Lawn Care Profit Allocation Benchmark
+# Lawn Care Profit &amp; Capacity Benchmark Calculator
 
-An interactive, single-file web tool for **Local Service Pro**. Australian lawn care
-operators enter their revenue and where it goes, see their allocation against the
-industry benchmark, and submit their name/email to receive a personalised report —
-doubling as a lead-generation funnel.
+A web-based **lead-magnet calculator** for **Local Service Pro**. Australian lawn care
+operators answer a short 3-step wizard and get an instant, screenshot-friendly benchmark
+report — how they compare on revenue, pricing, leads, capacity and systems, plus what it
+would take to grow. Every submission is captured as a structured, database-ready payload to
+build an industry benchmark and an email marketing list.
 
-![type: lead-gen tool](https://img.shields.io/badge/type-lead--gen%20tool-1f8a3b) ![stack: zero-dependency HTML](https://img.shields.io/badge/stack-vanilla%20HTML%2FCSS%2FJS-13632a)
+`lawn-care-dashboard/index.html` — single file, zero dependencies, dark-mode, mobile-first.
+
+![type: lead-magnet](https://img.shields.io/badge/type-lead--magnet-34d67c) ![stack: vanilla HTML/CSS/JS](https://img.shields.io/badge/stack-vanilla%20HTML%2FCSS%2FJS-21b865)
+
+## Positioning
+
+> Fix lead flow first. Build systems second. Add capacity third. Then buy equipment or hire with confidence.
+
+For operators doing roughly **$60k–$250k/year** — solo, part-time, shift-worker or small team.
 
 ## What it does
 
-1. **Solo vs Team toggle** — switches the benchmark model the operator is compared against.
-2. **Dollar inputs per bucket** — operators enter $ amounts (monthly or yearly); the tool computes percentages.
-3. **Live comparison** — a donut chart + per-bucket benchmark bars with on-target / high / low verdicts and plain-English tips.
-4. **Lead capture** — name, email, business name, state. On submit, the lead + their numbers are POSTed to your endpoint and a personalised on-page report is generated (printable / save-as-PDF).
-5. **Benchmark flywheel** — a counter shows progress toward the next benchmark edition ("for every 1,000 operators who submit, we publish a fresh report, split by solo & team").
+1. **Business type** — Solo / Part-Time / Shift Worker / Planning to hire / Already has staff / Team. Drives a **Solo Operator** vs **Team Business** report.
+2. **Contact capture** — name, email, phone, business, website, state, service area.
+3. **Your numbers** — revenue, enquiries, lead source, pricing, close/recurring/churn sliders, recurring clients, jobs/week, owner & admin hours, staff, VA — with editable advanced assumptions.
+4. **Instant report**, including:
+   - **Current snapshot** (revenue/hour, capacity used, close & recurring rates…)
+   - **Growth potential** — revenue gap, recurring clients needed at $100 *and* $120/job, extra weekly enquiries, marketing (3%) & systems (2%) budgets, invest-readiness.
+   - **Profit-first allocation** — solo vs team target buckets, with **Staff Wages as its own bucket** and "Operating Expenses" renamed **Equipment &amp; Running Costs**.
+   - **Capacity stack** — Owner only → + Part-time employee → + VA/admin → lead-flow-filled potential, with net $ after wages/VA.
+   - **Recommendation** — one of Foundation / Lead Flow / Systems / Capacity / Team Growth stage, with focus actions.
+   - **Offers** (recommended one highlighted) + **book-a-call CTA**.
+5. **Structured submission** POSTed to your endpoint (lead + numbers + calculated results + internal notification + email segments).
 
-## The benchmark buckets
+## Profit-first target models
 
-| Bucket | Covers | Solo target | Team target |
-|---|---|---|---|
-| Owner Pay | Owner wage / drawings | 52% | 45% |
-| Staff Wages | Part-time / casual help, super | ~0% | 15% |
-| Equipment & Running Costs | Fuel, mowers & gear, repairs, insurance, rego, materials | 20% | 18% |
-| Tax / GST Buffer | BAS, GST, income tax buffer | 15% | 12% |
-| Profit | True business profit | 8% | 5% |
-| Marketing | Website, GBP, local SEO, ads & testing | 3% | 3% |
-| Systems & Tech | LSP, automations, CRM, VA tools | 2% | 2% |
+| Bucket | Solo / owner-only | Team / growth |
+|---|---|---|
+| Owner Pay | 50% | 45% |
+| Staff Wages | 0% | 15% |
+| Equipment &amp; Running Costs | 20% | 18% |
+| Tax / GST Buffer | 15% | 12% |
+| Profit | 10% | 5% |
+| Marketing | 3% | 3% |
+| Systems &amp; Tech | 2% | 2% |
 
-> "Operating Expenses" is labelled **Equipment & Running Costs** in the UI — clearer for
-> lawn care operators. Each bucket also has an acceptable target *band*, not just a single
-> number, so realistic businesses still score well.
+**Equipment &amp; Running Costs** = mower maintenance, fuel, insurance, rego, tools, repairs, trailer, equipment replacement, materials.
+**Staff Wages** = employee wages, casual labour, super, payroll costs (kept separate so labour profitability is visible).
 
-The **solo** model reflects a pre-staff owner doing everything (higher owner pay, ~$0 staff).
-The **team** model uses the part-time growth-stage target where staff becomes a deliberate
-growth bucket rather than being hidden inside running costs.
+## Default assumptions (all editable in the form)
 
-## Wiring up lead capture
+| Assumption | Default |
+|---|---|
+| Average job value | $120 |
+| Visits per recurring client / yr | 20 |
+| Close rate | 40% |
+| Recurring conversion | 40% |
+| Annual churn | 40% |
+| Part-time capacity | 25 hrs/wk |
+| Part-time efficiency | 75% of owner |
+| VA / admin support | 10 hrs/wk |
+| VA cost | $20/hr |
+| Super guarantee | 12% |
+| Working weeks / year | 48 |
+| Marketing target | 3% of revenue |
+| Systems target | 2% of revenue |
 
-Open `index.html` and edit the `CONFIG` block near the top of the `<script>`:
+## Benchmark categories &amp; recommended offers
+
+| Category | Trigger (simplified) | Lead offer |
+|---|---|---|
+| Foundation Stage | No website / weak digital + low leads | Website + GBP |
+| Lead Flow Stage | Has site, inconsistent enquiries | GBP optimisation + website |
+| Systems Stage | Getting leads, losing time in admin | $197/mo Systems &amp; Automations |
+| Capacity Stage | Demand &gt; production capacity | Systems + part-time/VA |
+| Team Growth Stage | Staff/planning + higher revenue | Team dashboard + hiring pathway |
+
+## Wiring it up
+
+Edit the `CONFIG` block at the top of the `<script>` in `index.html`:
 
 ```js
 const CONFIG = {
-  SUBMIT_ENDPOINT: "",     // paste your endpoint URL (see below)
-  REPORT_BATCH: 1000,      // new report issued every N submissions
-  BASE_COUNT: 0            // optional starting number for the public counter
+  SUBMIT_ENDPOINT: "",   // JSON POST destination (Formspree / Apps Script / Zapier / your API)
+  BOOKING_URL: "https://localservicepro.com.au/book",  // strategy-call link
+  REPORT_BATCH: 1000,    // new benchmark published every N submissions
+  BASE_COUNT: 0          // optional starting number for the public counter
 };
 ```
 
-Set `SUBMIT_ENDPOINT` to any URL that accepts a JSON `POST`. No backend code required if you use one of:
+Leave `SUBMIT_ENDPOINT` blank to run in **demo mode** (submissions saved to `localStorage`
+key `lsp_lcb_subs`). Set it to any URL accepting a JSON `POST` to go live.
 
-- **Formspree** — `https://formspree.io/f/XXXXXXXX`
-- **Google Apps Script** web app with a `doPost(e)` that appends to a Sheet
-- **Make.com / Zapier** catch-hook URL (route to your CRM, Mailchimp, etc.)
-- Your own `/api/lead` route
-
-If left blank, the tool runs in **demo mode**: submissions are saved to the browser's
-`localStorage` (key `lsp_lawn_subs`) so nothing is lost while you test.
-
-### Payload shape
+### Submission payload (database-ready)
 
 ```json
 {
-  "source": "lawn-care-benchmark",
-  "submittedAt": "2026-06-26T03:00:00.000Z",
-  "lead":     { "name": "Jordan", "email": "you@biz.com.au", "business": "Jordan's Lawns", "state": "QLD" },
-  "business": {
-    "mode": "team", "period": "month",
-    "revenue": 12000, "revenueAnnual": 144000,
-    "amounts":     { "owner": 5400, "staff": 1800, "opex": 2160, "tax": 1440, "profit": 600, "marketing": 360, "systems": 240 },
-    "percentages": { "owner": 45, "staff": 15, "opex": 18, "tax": 12, "profit": 5, "marketing": 3, "systems": 2 },
-    "allocatedPct": 100
-  }
+  "submissionId": "lcb_xxx",
+  "timestamp": "2026-06-26T03:00:00.000Z",
+  "source": "lawn-care-profit-capacity-benchmark",
+  "consent": true,
+  "lead":     { "firstName": "...", "email": "...", "phone": "...", "business": "...", "website": "...", "state": "...", "serviceArea": "..." },
+  "business": { "businessType": "...", "annualRevenue": 80000, "weeklyEnquiries": 3, "mainLeadSource": "...",
+                "averageJobValue": 120, "closeRate": 0.4, "recurringConversionRate": 0.4, "churnRate": 0.4,
+                "activeRecurringClients": 25, "ownerToolHours": 35, "adminHours": 8, "staffCount": 0,
+                "staffHours": 0, "staffWage": 35, "vaHours": 0, "vaCost": 20, "systemsUsed": "None", "...": "..." },
+  "calculated": { "revenuePerHour": 47, "capacityUtilisation": 0.75, "revenueGoal": 100000, "revenueGap": 40000,
+                  "recurringClientsNeeded": 17, "extraWeeklyEnquiriesNeeded": 1.2,
+                  "currentAnnualCapacity": 151200, "capacityWithPartTime": 178200, "capacityWithVA": 185000,
+                  "marketingBudgetTarget": 2400, "systemsBudgetTarget": 1600,
+                  "benchmarkCategory": "Systems Stage", "recommendedOffer": "Systems & Automations", "reportType": "solo" },
+  "internalNotification": { "business": "...", "revenue": "$80,000", "revenueGap": "$40,000",
+                            "category": "Systems Stage", "recommendedOffer": "...", "bestFollowUpAngle": "..." },
+  "emailSegments": ["Solo Operator", "Systems Stage"]
 }
 ```
 
-Use the `percentages` to roll up the next benchmark edition (aggregate `mode: "solo"` and
-`mode: "team"` separately), and the `lead` for follow-up.
+Use `business` + `calculated` to build the benchmark (aggregate `reportType: "solo"` and
+`"team"` separately), `internalNotification` for your Slack/email alert, and `emailSegments`
+to tag the contact in your email tool.
 
 ## Deploying
 
-It's one static file — host it anywhere:
+One static file — host anywhere: GitHub Pages, Netlify, Vercel, Cloudflare Pages, or embed
+via `<iframe>` on the Local Service Pro site. No build step. Open `index.html` to preview.
 
-- **GitHub Pages** — enable Pages on this repo; the tool is at `/lawn-care-dashboard/`.
-- **Netlify / Vercel / Cloudflare Pages** — drag-and-drop the folder.
-- **Embed** — drop the file on your site or `<iframe>` it into a landing page.
+## Editing benchmarks &amp; offers
 
-No build step, no dependencies. Open `index.html` directly in a browser to preview.
-
-## Editing the benchmark
-
-The target numbers and bands live in the `MODELS` object in `index.html`. When you publish
-a new benchmark edition, update `targets` / `bands` there (and optionally `BASE_COUNT`).
+The `MODELS`, `CATEGORIES` and `OFFERS` objects in `index.html` hold the target numbers,
+stage logic and pricing — update them when you publish a new benchmark edition or change an
+offer.
