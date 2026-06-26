@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Lawn Care Profit &amp; Capacity Benchmark Calculator — Local Service Pro</title>
-<meta name="description" content="See how your lawn care business compares to healthy benchmarks — and what it would take to grow from owner-led chaos to a more profitable, systemised business. Free tool by Local Service Pro." />
+<meta name="description" content="See your real lawn care numbers — average $/job, $/hour on the tools, close rate — and add them to the Australian industry benchmark so every operator can price with confidence. Free, no selling. By Local Service Pro." />
 <style>
   :root{
     --bg:#0a100d;
@@ -227,8 +227,8 @@
   <div class="wrap">
     <span class="brand">🌿 Local Service Pro</span>
     <h1>Lawn Care Profit &amp; Capacity Benchmark Calculator</h1>
-    <p class="sub">See how your lawn care business compares — and what it would take to grow from owner-led chaos to a more profitable, systemised business.</p>
-    <div class="trust"><span>🇦🇺 Built for Aussie operators</span><span>⏱ Takes ~3 minutes</span><span>📊 Instant benchmark report</span></div>
+    <p class="sub">See your real numbers — average $/job, $/hour on the tools, close rate — and add them to the Australian lawn care benchmark. No selling. Just a clearer picture for every operator.</p>
+    <div class="trust"><span>🇦🇺 Built for Aussie operators</span><span>⏱ Takes ~3 minutes</span><span>🌊 A rising tide lifts all boats</span></div>
   </div>
 </header>
 
@@ -237,9 +237,9 @@
   <div class="counter">
     <div class="big" id="submitCount">—</div>
     <div style="flex:1">
-      <strong>Help build the Australian lawn care benchmark.</strong>
+      <strong>Help build an honest Australian lawn care benchmark.</strong>
       <div class="ptrack"><div class="pfill" id="counterFill" style="width:0%"></div></div>
-      <small id="counterNote">For every <b>1,000</b> operators who submit, we publish fresh benchmark reports — split by solo &amp; team businesses.</small>
+      <small id="counterNote">For every <b>1,000</b> operators who add their numbers, we publish a fresh benchmark — average $/job, $/hour and more — split by solo &amp; team. The more who share, the harder it is to undercharge the whole industry into the ground.</small>
     </div>
   </div>
 
@@ -357,9 +357,9 @@
 
       <div class="consent">
         <input type="checkbox" id="chk_consent" />
-        <label for="chk_consent" style="margin:0;font-weight:600">I agree to receive my benchmark results and occasional Local Service Pro resources/offers by email.</label>
+        <label for="chk_consent" style="margin:0;font-weight:600">Email me my benchmark results and the Australian lawn care industry report when it's published.</label>
       </div>
-      <p class="privacy">We'll use your anonymous business data to help build lawn care industry benchmarks. Your individual details will not be published without permission.</p>
+      <p class="privacy">We'll use your anonymous business data to help build lawn care industry benchmarks. Your individual details will never be published without permission, and we won't sell your data.</p>
 
       <div class="btnrow">
         <button class="btn ghost" onclick="goStep(2)">← Back</button>
@@ -385,10 +385,17 @@
       <div class="metricgrid" id="snapshotGrid"></div>
     </div>
 
+    <!-- Rates spotlight — the heart of the industry benchmark -->
+    <div class="card">
+      <div class="sectiontitle"><span class="dot"></span> Your rates — the numbers the industry report is built on</div>
+      <div class="metricgrid" id="ratesGrid"></div>
+      <div class="quote">These two numbers are the heart of the benchmark. When operators charge too little here, profit quietly drains out of the whole industry. Sharing yours helps set a fairer floor — <b>a rising tide lifts all boats.</b></div>
+    </div>
+
     <div class="card">
       <div class="sectiontitle"><span class="dot"></span> Growth potential</div>
       <div class="metricgrid" id="growthGrid"></div>
-      <div class="quote">"Better Google leads give you the confidence to increase prices and replace low-value jobs." — the goal isn't just more jobs, it's <b>better</b> jobs.</div>
+      <div class="quote">"Better leads give you the confidence to increase prices and replace low-value jobs." — the goal isn't just more jobs, it's <b>better</b> jobs.</div>
       <div id="growthNarrative" style="font-size:14.5px"></div>
     </div>
 
@@ -411,27 +418,20 @@
       <div class="quote">"A part-time employee increases production capacity — but only if the lead flow exists to fill the schedule." A VA protects your highest-value hours by removing admin drag.</div>
     </div>
 
-    <!-- Recommendation -->
+    <!-- Insight (not a sales pitch) -->
     <div class="card">
-      <div class="sectiontitle"><span class="dot"></span> Your recommendation</div>
+      <div class="sectiontitle"><span class="dot"></span> What your numbers suggest</div>
       <div class="reco-blurb" id="recoBlurb"></div>
-      <strong style="font-size:14px">What to focus on now:</strong>
+      <strong style="font-size:14px">Where your attention is best spent:</strong>
       <ul class="focus" id="recoFocus"></ul>
       <div class="quote" id="recoQuote"></div>
     </div>
 
-    <!-- Offers -->
-    <div class="card">
-      <div class="sectiontitle"><span class="dot"></span> How Local Service Pro helps</div>
-      <p class="hint" style="margin-bottom:14px">Fix lead flow first. Build systems second. Add capacity third. Then buy equipment or hire with confidence.</p>
-      <div class="offers" id="offerGrid"></div>
-    </div>
-
-    <!-- Final CTA -->
+    <!-- Industry benefit / rising tide -->
     <div class="cta-final">
-      <h2>Want a tailored growth plan?</h2>
-      <p>Book a free 20-minute strategy call. We'll walk through your benchmark and map the fastest path to better leads, less admin, and more profitable jobs.</p>
-      <a class="btn" id="bookBtn" href="#" target="_blank" rel="noopener">📞 Book my free strategy call</a>
+      <h2>🌊 Your numbers are now part of the benchmark</h2>
+      <p>This isn't about selling you anything. When enough operators share real numbers — average $/job, $/hour on the tools, close rates — we can publish an honest Australian benchmark. That's how we stop the race to the bottom, where people undercharge until no one makes a profit.</p>
+      <p style="margin-top:10px">Know another lawn care operator? Send them the calculator. The more who add their numbers, the sharper and fairer the benchmark gets — for everyone.</p>
     </div>
 
     <div class="card">
@@ -446,7 +446,7 @@
 </main>
 
 <footer class="wrap">
-  <p>🌿 <b>Local Service Pro</b> — better leads, follow-up, systems &amp; visibility for Aussie local service businesses.<br/>© <span id="yr"></span> Local Service Pro.</p>
+  <p>🌿 <b>Local Service Pro</b> — building an honest benchmark for the Australian lawn care industry, so every operator can price with confidence.<br/>Your data stays anonymous. A rising tide lifts all boats. © <span id="yr"></span> Local Service Pro.</p>
 </footer>
 
 <script>
@@ -454,15 +454,13 @@
    CONFIG — wire up your destinations here
    ============================================================
    SUBMIT_ENDPOINT : URL that accepts a JSON POST of the full submission
-                     (lead + numbers + calculated results + internal
-                     notification). Works with Formspree, a Google Apps
-                     Script web app, Make/Zapier webhook, or your own API.
+                     (lead + numbers + calculated results). Works with
+                     Formspree, a Google Apps Script web app, Make/Zapier
+                     webhook, or your own API.
                      Leave "" for DEMO mode (saves to localStorage).
-   BOOKING_URL     : your strategy-call booking link (Calendly/GHL/etc.)
    ============================================================ */
 const CONFIG = {
   SUBMIT_ENDPOINT: "",
-  BOOKING_URL: "https://localservicepro.com.au/book",
   REPORT_BATCH: 1000,
   BASE_COUNT: 0
 };
@@ -475,7 +473,7 @@ const BUCKETS = [
   { key:"tax",       name:"Tax / GST Buffer",          desc:"BAS, GST, income tax buffer",                            color:"#f3b73f" },
   { key:"profit",    name:"Profit",                    desc:"True business profit",                                   color:"#2fbf71" },
   { key:"marketing", name:"Marketing",                 desc:"Website, Google Business Profile, local SEO, ads",       color:"#b07cf0" },
-  { key:"systems",   name:"Systems & Tech",            desc:"Local Service Pro, automations, CRM, VA tools",          color:"#9aa7a0" }
+  { key:"systems",   name:"Systems & Tech",            desc:"CRM, automations, scheduling & admin software, VA tools", color:"#9aa7a0" }
 ];
 const MODELS = {
   solo: { label:"Solo / owner-only", targets:{owner:50,staff:0,opex:20,tax:15,profit:10,marketing:3,systems:2} },
@@ -484,39 +482,25 @@ const MODELS = {
 
 const CATEGORIES = {
   foundation:{ name:"Foundation Stage", icon:"🧱",
-    blurb:"You need the basics in place: a proper website, an optimised Google Business Profile, a review system and simple follow-up. Right now you're relying on word of mouth and Facebook — that caps how many good leads you can get.",
-    offers:["website","gbp"],
-    focus:["Get a real 7-page website so you stop losing leads to better-looking competitors.","Set up & optimise your Google Business Profile — it's where high-intent local searches go.","Start a simple Google review system to build trust and ranking.","Add basic lead follow-up so no enquiry goes cold."],
+    blurb:"You're early days — most work comes from word of mouth and Facebook. The biggest lever is being easy to find and trust locally, so you're competing on quality rather than just being the cheapest.",
+    focus:["Make it easy for local customers to find and trust you.","Ask happy clients for reviews — trust is what lets you charge properly.","Capture every enquiry so none go cold.","Know where your leads actually come from."],
     quote:"\"Do not buy the bigger mower before you have the lead flow to fill it.\"" },
   leadflow:{ name:"Lead Flow Stage", icon:"📡",
-    blurb:"You've got some digital presence but enquiries are inconsistent and mixed-quality. The fix is sharpening your Google Business Profile and website so you attract higher-intent leads — not just whoever messages on Facebook.",
-    offers:["gbp","website"],
-    focus:["Optimise your Google Business Profile to rank for local 'lawn mowing near me' searches.","Tighten your website so visitors actually enquire.","Grow Google reviews to win trust before the first call.","Track where leads come from so you invest in what works."],
-    quote:"\"Better Google leads give you the confidence to increase prices and replace low-value jobs.\"" },
+    blurb:"You've got some presence but enquiries are inconsistent and mixed-quality. The lever is attracting higher-intent local customers, so you can be choosier about the jobs you take and what you charge.",
+    focus:["Aim for higher-intent local enquiries, not just whoever messages first.","Make it simple for people to enquire and book.","Grow reviews to win trust before the first call.","Track lead sources so you double down on what works."],
+    quote:"\"Better leads give you the confidence to increase prices and replace low-value jobs.\"" },
   systems:{ name:"Systems Stage", icon:"⚙️",
-    blurb:"You're getting leads but losing time and jobs in admin, slow follow-up and missed messages. This is where systems pay for themselves — fast response, quote follow-up and review automation without you doing more admin.",
-    offers:["systems","gbp"],
-    focus:["Put leads into one dashboard so nothing slips through Messenger or texts.","Automate quote and lead follow-up so slow replies stop costing you jobs.","Automate Google review requests after every completed job.","Get basic data visibility so you can see what's working."],
+    blurb:"You're getting leads but losing time and jobs to admin, slow follow-up and missed messages. Tightening your day-to-day systems protects both your time and your margins.",
+    focus:["Respond fast — slow replies quietly cost you jobs.","Follow up every quote.","Ask for a review after each completed job.","Keep your numbers visible so you can see what's working."],
     quote:"\"Systems stop admin becoming your third job.\"" },
   capacity:{ name:"Capacity Stage", icon:"🚀",
-    blurb:"You have the demand but not enough production capacity — your schedule is full or close to it. Time to add a part-time worker and VA/admin support, sharpen pricing, and route jobs better so you can say yes to more good work.",
-    offers:["systems","website"],
-    focus:["Add a part-time worker to lift weekly job capacity (only with the lead flow to fill it).","Add VA/admin support to protect your highest-value hours on the tools.","Lift pricing and replace low-value jobs with better ones.","Use systems to manage the extra volume without chaos."],
+    blurb:"You have the demand but not enough production capacity — your schedule is full or close to it. This is the moment to sharpen pricing, add help, and route jobs better so you can say yes to more good work.",
+    focus:["Lift pricing and replace low-value jobs with better ones.","Add a part-time worker to grow weekly capacity (with the lead flow to fill it).","Protect your highest-value hours on the tools — hand off admin.","Tighten routing so less time is lost between jobs."],
     quote:"\"A VA helps protect the owner's highest-value hours by removing admin and communication drag.\"" },
   teamgrowth:{ name:"Team Growth Stage", icon:"🚛",
-    blurb:"You're ready to reduce owner hours on the tools or build toward a second ute. You need a team dashboard, job-management connection, reporting and a clear hiring pathway — and to know your staff are actually profitable.",
-    offers:["systems","website"],
-    focus:["Separate staff wages from running costs so you can see if labour is profitable.","Use a team dashboard + reporting to manage jobs and people.","Strengthen lead flow before adding more staff.","Plan the pathway to a second ute / reduced owner hours."],
+    blurb:"You're ready to reduce owner hours on the tools or build toward a second ute. The focus now is knowing your staff are actually profitable, and strengthening lead flow before adding more people.",
+    focus:["Keep staff wages in their own bucket so you can see if labour is profitable.","Strengthen lead flow before adding more staff.","Track jobs and people so growth doesn't become chaos.","Plan the pathway to a second ute / reduced owner hours."],
     quote:"\"Staff wages need their own bucket so you can see whether labour is actually profitable.\"" }
-};
-
-const OFFERS = {
-  website:{ title:"7-Page Lawn Care Website", price:"$1,997", per:"", note:"Home, About, Contact, 3 service pages + a key suburb page — built to turn searchers into booked jobs.",
-    items:["Designed to convert local searchers","Service + suburb pages for Google","Mobile-first & fast"] },
-  gbp:{ title:"Google Business Profile Setup", price:"$500", was:"$1,000", per:"", note:"50% launch offer. The single highest-intent lead source for local lawn care.",
-    items:["Full setup & optimisation","Maps & local ranking ready","Review strategy included"] },
-  systems:{ title:"Systems & Automations", price:"$197", per:"/month", note:"Local Service Pro / GHL system that stops admin becoming your third job.",
-    items:["Lead dashboard + simple CRM & pipeline","Lead & quote follow-up automation","Google review request automation"] }
 };
 
 /* ---------- State / helpers ---------- */
@@ -686,6 +670,12 @@ function renderReport(r,catKey){
     metric("Revenue per hour", r.revPerHour?money(r.revPerHour):"—", `target ${money(r.hourly)}/hr`, r.revPerHour && r.revPerHour < r.hourly?"warn":"hi") +
     metric("Capacity used", r.jobsPossible?pct(Math.min(r.capUtil,2)*100):"—", `${fmt(r.jobsWeek)} of ~${fmt(r.jobsPossible)} jobs/wk`, r.capUtil>=0.85?"warn":"");
 
+  // Rates spotlight — the headline industry numbers
+  $("ratesGrid").innerHTML =
+    metric("Average $ / job", money(r.jobValue), "your typical job value", "hi") +
+    metric("$ / hour on the tools", r.revPerHour?money(r.revPerHour):"—", `what each working hour really earns (target ${money(r.hourly)})`, r.revPerHour && r.revPerHour < r.hourly?"warn":"hi") +
+    metric("Effective hourly target", money(r.hourly), "the rate you're aiming for");
+
   // Growth
   $("growthGrid").innerHTML =
     metric("12-month goal", moneyK(r.goal), "your target revenue", "hi") +
@@ -698,9 +688,7 @@ function renderReport(r,catKey){
   $("growthNarrative").innerHTML =
     `To bridge <b>${moneyK(r.gap)}</b>, you need roughly <b>${r.clients120} retained recurring clients</b> at $120/job (20 visits/yr = $2,400 each), or about <b>${r.clients100} clients</b> at $100/job ($2,000 each). ` +
     `That's around <b>+${r.extraEnqWk>=1?Math.ceil(r.extraEnqWk):r.extraEnqWk.toFixed(1)} quality enquiries per week</b> (allowing for ${pct(r.churn*100)} churn on your existing ${r.activeRec||0} clients) and about <b>+${r.extraJobsNeededWk.toFixed(1)} jobs/week</b>. ` +
-    (r.canJustify
-      ? `At your revenue, a <b>${moneyK(r.mktgTarget)}</b> marketing budget and <b>${moneyK(r.sysTarget)}</b> systems budget easily justify investing in your website, Google Business Profile and systems to capture this growth.`
-      : `Your marketing/systems budgets are still small — focus first on cheap, high-intent wins (Google Business Profile + reviews) before bigger spend.`);
+    `Most of that gap closes faster through <b>better-paying jobs and higher-intent leads</b> than through simply working more hours. A healthy book sets aside about <b>${moneyK(r.mktgTarget)}</b> for marketing and <b>${moneyK(r.sysTarget)}</b> for systems each year — guide rails, not a sales pitch.`;
 
   renderBuckets();
   setMode(state.mode);
@@ -718,24 +706,11 @@ function renderReport(r,catKey){
   $("recoFocus").innerHTML = cat.focus.map(f=>`<li>${f}</li>`).join("");
   $("recoQuote").textContent = cat.quote;
 
-  // Offers (recommended first / highlighted)
-  const order = [...new Set([...cat.offers, "website","gbp","systems"])];
-  $("offerGrid").innerHTML = order.map(k=>{
-    const o=OFFERS[k], rec=cat.offers.includes(k);
-    return `<div class="offer ${rec?'rec':''}">${rec?'<span class="tagrec">Recommended for you</span>':''}
-      <h3>${o.title}</h3>
-      <div class="price">${o.price}${o.was?`<s>${o.was}</s>`:''}${o.per?`<span class="per">${o.per}</span>`:''}</div>
-      <div style="font-size:13px;color:var(--muted)">${o.note}</div>
-      <ul>${o.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`;
-  }).join("");
-
-  // Solo vs team focus already baked into category; add report-type framing line
+  // Solo vs team framing line (insight, not a pitch)
   const frame = soloReport
-    ? "Solo focus: lift your hourly rate, win better Google leads, cut low-value Facebook jobs, remove admin, and build recurring clients — so you can reach $100k part-time and leave shift work with confidence."
-    : "Team focus: separate staff wages from running costs, measure if your crew is profitable, strengthen lead flow before hiring more, and use dashboards to build toward a second ute.";
+    ? "Solo focus: lift your hourly rate, win better leads, replace low-value jobs, remove admin, and build recurring clients — so reaching $100k part-time becomes realistic."
+    : "Team focus: keep staff wages in their own bucket, check whether your crew is profitable, and strengthen lead flow before hiring more.";
   $("recoBlurb").innerHTML += `<div class="quote" style="margin-top:14px">${frame}</div>`;
-
-  $("bookBtn").href = CONFIG.BOOKING_URL;
 }
 function capRow(lvl,title,sub,amt,note){
   return `<div class="caprow"><div class="lvl">${lvl}</div><div class="cmid"><div class="ct">${title}</div><div class="cs">${sub}</div></div><div class="camt"><b>${moneyK(amt)}</b><span>${note}</span></div></div>`;
@@ -766,7 +741,6 @@ async function generate(){
   const catKey = categorise(r);
   const cat = CATEGORIES[catKey];
   const soloReport = isSoloReport(state.type);
-  const recOffer = cat.offers[0];
 
   const segments = [
     soloReport?"Solo Operator":"Team Business",
@@ -801,12 +775,13 @@ async function generate(){
       capacityWithPartTime:Math.round(r.L2annual),
       capacityWithVA:Math.round(r.L3annual),
       marketingBudgetTarget:Math.round(r.mktgTarget), systemsBudgetTarget:Math.round(r.sysTarget),
-      benchmarkCategory:cat.name, recommendedOffer:OFFERS[recOffer].title, reportType: soloReport?"solo":"team"
+      averageJobValue:r.jobValue, revenuePerHourOnTools:Math.round(r.revPerHour),
+      benchmarkCategory:cat.name, reportType: soloReport?"solo":"team"
     },
-    internalNotification:{
-      business:val("f_business")||val("f_name"), revenue:money(r.revenue), revenueGap:money(r.gap),
-      category:cat.name, recommendedOffer:OFFERS[recOffer].title,
-      bestFollowUpAngle: cat.quote.replace(/"/g,"")
+    benchmarkSummary:{
+      business:val("f_business")||val("f_name"), revenue:money(r.revenue),
+      dollarsPerJob:money(r.jobValue), dollarsPerHourOnTools:money(r.revPerHour),
+      category:cat.name, reportType: soloReport?"solo":"team"
     },
     emailSegments: segments
   };
@@ -842,7 +817,7 @@ function refreshCounter(){
   $("submitCount").textContent = fmt(c);
   const into = c % CONFIG.REPORT_BATCH, rem = CONFIG.REPORT_BATCH - into;
   $("counterFill").style.width = (into/CONFIG.REPORT_BATCH*100)+"%";
-  $("counterNote").innerHTML = `For every <b>${fmt(CONFIG.REPORT_BATCH)}</b> operators who submit, we publish fresh benchmark reports — split by solo &amp; team. <b>${fmt(rem)}</b> to go until the next edition.`;
+  $("counterNote").innerHTML = `For every <b>${fmt(CONFIG.REPORT_BATCH)}</b> operators who add their numbers, we publish a fresh benchmark — average $/job, $/hour and more, split by solo &amp; team. <b>${fmt(rem)}</b> to go until the next edition.`;
 }
 
 /* ---------- init ---------- */

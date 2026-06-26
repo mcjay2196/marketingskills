@@ -1,18 +1,19 @@
 # Lawn Care Profit &amp; Capacity Benchmark Calculator
 
-A web-based **lead-magnet calculator** for **Local Service Pro**. Australian lawn care
-operators answer a short 3-step wizard and get an instant, screenshot-friendly benchmark
-report — how they compare on revenue, pricing, leads, capacity and systems, plus what it
-would take to grow. Every submission is captured as a structured, database-ready payload to
-build an industry benchmark and an email marketing list.
+A web-based **benchmark tool** for **Local Service Pro**. Australian lawn care operators
+answer a short 3-step wizard and get an instant, screenshot-friendly report — how they
+compare on revenue, pricing, **average $/job**, **$/hour on the tools**, leads and capacity.
+There is **no sales pitch**: the value to the user is seeing their own numbers clearly, while
+contributing (anonymously) to an industry benchmark that helps every operator price with
+confidence.
 
 `lawn-care-dashboard/index.html` — single file, zero dependencies, dark-mode, mobile-first.
 
-![type: lead-magnet](https://img.shields.io/badge/type-lead--magnet-34d67c) ![stack: vanilla HTML/CSS/JS](https://img.shields.io/badge/stack-vanilla%20HTML%2FCSS%2FJS-21b865)
+![type: benchmark tool](https://img.shields.io/badge/type-benchmark%20tool-34d67c) ![stack: vanilla HTML/CSS/JS](https://img.shields.io/badge/stack-vanilla%20HTML%2FCSS%2FJS-21b865)
 
 ## Positioning
 
-> Fix lead flow first. Build systems second. Add capacity third. Then buy equipment or hire with confidence.
+> A rising tide lifts all boats. When enough operators share real numbers, we can publish an honest benchmark — and stop the race to the bottom where people undercharge until no one makes a profit.
 
 For operators doing roughly **$60k–$250k/year** — solo, part-time, shift-worker or small team.
 
@@ -23,12 +24,13 @@ For operators doing roughly **$60k–$250k/year** — solo, part-time, shift-wor
 3. **Your numbers** — revenue, enquiries, lead source, pricing, close/recurring/churn sliders, recurring clients, jobs/week, owner & admin hours, staff, VA — with editable advanced assumptions.
 4. **Instant report**, including:
    - **Current snapshot** (revenue/hour, capacity used, close & recurring rates…)
-   - **Growth potential** — revenue gap, recurring clients needed at $100 *and* $120/job, extra weekly enquiries, marketing (3%) & systems (2%) budgets, invest-readiness.
+   - **Rates spotlight** — headline **average $/job** and **$/hour on the tools** (the core industry-benchmark numbers), framed around not undercharging.
+   - **Growth potential** — revenue gap, recurring clients needed at $100 *and* $120/job, extra weekly enquiries, marketing (3%) & systems (2%) guide-rail budgets.
    - **Profit-first allocation** — solo vs team target buckets, with **Staff Wages as its own bucket** and "Operating Expenses" renamed **Equipment &amp; Running Costs**.
    - **Capacity stack** — Owner only → + Part-time employee → + VA/admin → lead-flow-filled potential, with net $ after wages/VA.
-   - **Recommendation** — one of Foundation / Lead Flow / Systems / Capacity / Team Growth stage, with focus actions.
-   - **Offers** (recommended one highlighted) + **book-a-call CTA**.
-5. **Structured submission** POSTed to your endpoint (lead + numbers + calculated results + internal notification + email segments).
+   - **What your numbers suggest** — a neutral focus stage (Foundation / Lead Flow / Systems / Capacity / Team Growth) with best-practice guidance, **not** product pitches.
+   - **Rising-tide closing** — confirms their numbers are now in the benchmark and invites them to share the tool.
+5. **Structured submission** POSTed to your endpoint (lead + numbers + calculated results + benchmark summary + email segments).
 
 ## Profit-first target models
 
@@ -63,15 +65,15 @@ For operators doing roughly **$60k–$250k/year** — solo, part-time, shift-wor
 | Marketing target | 3% of revenue |
 | Systems target | 2% of revenue |
 
-## Benchmark categories &amp; recommended offers
+## Benchmark categories (insight only — no offers attached)
 
-| Category | Trigger (simplified) | Lead offer |
+| Category | Trigger (simplified) | Neutral guidance focus |
 |---|---|---|
-| Foundation Stage | No website / weak digital + low leads | Website + GBP |
-| Lead Flow Stage | Has site, inconsistent enquiries | GBP optimisation + website |
-| Systems Stage | Getting leads, losing time in admin | $197/mo Systems &amp; Automations |
-| Capacity Stage | Demand &gt; production capacity | Systems + part-time/VA |
-| Team Growth Stage | Staff/planning + higher revenue | Team dashboard + hiring pathway |
+| Foundation Stage | No website / weak digital + low leads | Be findable & trusted; capture every enquiry |
+| Lead Flow Stage | Has site, inconsistent enquiries | Attract higher-intent leads; grow reviews |
+| Systems Stage | Getting leads, losing time in admin | Respond fast; follow up quotes; know your numbers |
+| Capacity Stage | Demand &gt; production capacity | Lift pricing; add help; tighten routing |
+| Team Growth Stage | Staff/planning + higher revenue | Check labour profitability; strengthen lead flow first |
 
 ## Wiring it up
 
@@ -80,7 +82,6 @@ Edit the `CONFIG` block at the top of the `<script>` in `index.html`:
 ```js
 const CONFIG = {
   SUBMIT_ENDPOINT: "",   // JSON POST destination (Formspree / Apps Script / Zapier / your API)
-  BOOKING_URL: "https://localservicepro.com.au/book",  // strategy-call link
   REPORT_BATCH: 1000,    // new benchmark published every N submissions
   BASE_COUNT: 0          // optional starting number for the public counter
 };
@@ -106,24 +107,26 @@ key `lsp_lcb_subs`). Set it to any URL accepting a JSON `POST` to go live.
                   "recurringClientsNeeded": 17, "extraWeeklyEnquiriesNeeded": 1.2,
                   "currentAnnualCapacity": 151200, "capacityWithPartTime": 178200, "capacityWithVA": 185000,
                   "marketingBudgetTarget": 2400, "systemsBudgetTarget": 1600,
-                  "benchmarkCategory": "Systems Stage", "recommendedOffer": "Systems & Automations", "reportType": "solo" },
-  "internalNotification": { "business": "...", "revenue": "$80,000", "revenueGap": "$40,000",
-                            "category": "Systems Stage", "recommendedOffer": "...", "bestFollowUpAngle": "..." },
+                  "averageJobValue": 120, "revenuePerHourOnTools": 47,
+                  "benchmarkCategory": "Systems Stage", "reportType": "solo" },
+  "benchmarkSummary": { "business": "...", "revenue": "$80,000",
+                        "dollarsPerJob": "$120", "dollarsPerHourOnTools": "$47",
+                        "category": "Systems Stage", "reportType": "solo" },
   "emailSegments": ["Solo Operator", "Systems Stage"]
 }
 ```
 
 Use `business` + `calculated` to build the benchmark (aggregate `reportType: "solo"` and
-`"team"` separately), `internalNotification` for your Slack/email alert, and `emailSegments`
-to tag the contact in your email tool.
+`"team"` separately, and roll up `averageJobValue` / `revenuePerHourOnTools` for the headline
+industry numbers). `benchmarkSummary` is a compact at-a-glance object, and `emailSegments`
+tags the contact in your email tool so you can send the right benchmark edition.
 
 ## Deploying
 
 One static file — host anywhere: GitHub Pages, Netlify, Vercel, Cloudflare Pages, or embed
 via `<iframe>` on the Local Service Pro site. No build step. Open `index.html` to preview.
 
-## Editing benchmarks &amp; offers
+## Editing benchmarks
 
-The `MODELS`, `CATEGORIES` and `OFFERS` objects in `index.html` hold the target numbers,
-stage logic and pricing — update them when you publish a new benchmark edition or change an
-offer.
+The `MODELS` and `CATEGORIES` objects in `index.html` hold the target bucket numbers and the
+stage logic / guidance — update them when you publish a new benchmark edition.
