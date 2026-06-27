@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lawn Care Profit &amp; Capacity Benchmark Calculator — Local Service Pro</title>
+<meta name="description" content="See your real lawn care numbers — average $/job, $/hour on the tools, close rate — and add them to the Australian industry benchmark so every operator can price with confidence. By Local Service Pro." />
+<style>
+  :root{
+    --bg:#0a100d;
+    --bg2:#0d1512;
+    --card:#111c16;
+    --card2:#16261d;
+    --line:#23362b;
+    --line2:#2e4537;
+    --ink:#eaf4ee;
+    --muted:#94a99c;
+    --green:#34d67c;
+    --green2:#21b865;
+    --green-d:#0f3d24;
+    --amber:#f3b73f;
+    --red:#f0635f;
+    --blue:#4aa3ff;
+    --purple:#b07cf0;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 34px rgba(0,0,0,.30);
+    --maxw:880px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%,#15291d 0%,var(--bg) 55%);
+    color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;
+  }
+  a{color:var(--green);text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+  .narrow{max-width:680px}
+
+  /* Hero */
+  header.hero{padding:42px 0 10px;text-align:center}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:14px;letter-spacing:.3px;
+    color:var(--green);background:rgba(52,214,124,.1);border:1px solid rgba(52,214,124,.3);border-radius:999px;padding:6px 14px}
+  header.hero h1{font-size:clamp(26px,5vw,40px);line-height:1.12;margin:20px auto 12px;font-weight:850;letter-spacing:-.6px;max-width:680px}
+  header.hero p.sub{font-size:clamp(15px,2.4vw,18px);color:var(--muted);max-width:560px;margin:0 auto 8px}
+  .trust{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px;font-size:12.5px;color:var(--muted)}
+  .trust span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+
+  main{padding:24px 0 70px}
+
+  /* Cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:18px}
+  .card h2{font-size:19px;margin:0 0 4px;font-weight:800;letter-spacing:-.3px;display:flex;align-items:center;gap:9px}
+  .card .step-no{font-size:12px;font-weight:800;color:var(--green);background:var(--green-d);border:1px solid rgba(52,214,124,.3);
+    width:24px;height:24px;border-radius:7px;display:grid;place-items:center;flex:0 0 24px}
+  .card .hint{color:var(--muted);font-size:14px;margin:0 0 18px}
+
+  /* Progress */
+  .progress-bar{display:flex;gap:6px;margin:0 auto 22px;max-width:520px}
+  .progress-bar .seg{flex:1;height:6px;border-radius:4px;background:var(--line)}
+  .progress-bar .seg.on{background:var(--green)}
+  .steplabel{text-align:center;color:var(--muted);font-size:12.5px;margin-bottom:14px;letter-spacing:.4px;text-transform:uppercase;font-weight:700}
+
+  /* Choice cards */
+  .choices{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  @media(max-width:640px){.choices{grid-template-columns:1fr 1fr}}
+  @media(max-width:420px){.choices{grid-template-columns:1fr}}
+  .choice{cursor:pointer;border:1.5px solid var(--line);background:var(--bg2);border-radius:13px;padding:15px 13px;text-align:left;transition:.15s}
+  .choice:hover{border-color:var(--green2);transform:translateY(-1px)}
+  .choice.active{border-color:var(--green);background:var(--card2);box-shadow:inset 0 0 0 1px var(--green)}
+  .choice .ico{font-size:21px}
+  .choice .t{font-weight:800;font-size:14.5px;margin-top:7px}
+  .choice .d{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+
+  /* Fields */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:560px){.grid2,.grid3{grid-template-columns:1fr}}
+  .field{margin-bottom:4px}
+  .field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+  .field label .opt{font-weight:500;color:var(--muted);font-size:12px}
+  .field .tip{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.35}
+  input,select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;font-family:inherit;
+    color:var(--ink);background:var(--bg2);transition:.12s}
+  input::placeholder{color:#5d7064}
+  input:focus,select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(52,214,124,.16)}
+  select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a99c' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+  .with-prefix{position:relative}
+  .with-prefix span.pre{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:700;pointer-events:none}
+  .with-prefix input{padding-left:26px}
+  .with-suffix{position:relative}
+  .with-suffix span.suf{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:700;pointer-events:none}
+  .with-suffix input{padding-right:30px}
+
+  /* Sliders */
+  .slider .srow{display:flex;justify-content:space-between;align-items:baseline}
+  .slider .sval{font-weight:800;color:var(--green);font-size:15px}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:5px;background:var(--line);padding:0;margin:10px 0 2px}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--green);border:3px solid var(--bg);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--green);border:3px solid var(--bg);cursor:pointer}
+
+  /* Accordion */
+  .accordion{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:8px}
+  .accordion summary{cursor:pointer;padding:13px 16px;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;align-items:center;background:var(--bg2)}
+  .accordion summary::-webkit-details-marker{display:none}
+  .accordion summary::after{content:"＋";color:var(--green);font-weight:800}
+  .accordion[open] summary::after{content:"－"}
+  .accordion .acc-body{padding:16px}
+
+  /* Buttons */
+  .btnrow{display:flex;gap:10px;margin-top:22px;align-items:center}
+  .btn{cursor:pointer;border:0;font-weight:800;font-size:15.5px;padding:14px 22px;border-radius:12px;transition:.15s;font-family:inherit}
+  .btn.primary{background:linear-gradient(135deg,var(--green),var(--green2));color:#06150d;flex:1;display:flex;align-items:center;justify-content:center;gap:8px}
+  .btn.primary:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(52,214,124,.3)}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--green2)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+  .consent{display:flex;gap:10px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-top:18px;font-size:13px;color:var(--ink)}
+  .consent input{width:18px;height:18px;flex:0 0 18px;margin-top:1px;accent-color:var(--green)}
+  .privacy{font-size:11.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+  .formnote{font-size:13.5px;margin-top:12px;padding:11px 14px;border-radius:10px;display:none}
+  .formnote.err{display:block;background:rgba(240,99,95,.14);border:1px solid rgba(240,99,95,.4);color:#ffc9c7}
+
+  /* Counter strip */
+  .counter{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 20px;margin-bottom:18px}
+  .counter .big{font-size:24px;font-weight:900;color:var(--green);line-height:1}
+  .counter .ptrack{height:8px;background:var(--line);border-radius:5px;overflow:hidden;margin-top:7px}
+  .counter .pfill{height:100%;background:linear-gradient(90deg,var(--green),var(--green2));border-radius:5px}
+  .counter small{color:var(--muted);font-size:12.5px}
+
+  /* Message quotes */
+  .quote{border-left:3px solid var(--green);background:rgba(52,214,124,.07);padding:11px 16px;border-radius:0 10px 10px 0;font-size:14px;margin:14px 0;color:var(--ink)}
+  .quote.amber{border-color:var(--amber);background:rgba(243,183,63,.08)}
+
+  /* ===== REPORT ===== */
+  #report{display:none}
+  .report-hero{background:linear-gradient(150deg,#103a23,#0c1c14);border:1px solid var(--line2);border-radius:var(--radius);padding:24px;margin-bottom:18px}
+  .cat-badge{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:13px;padding:7px 14px;border-radius:999px;background:var(--green-d);border:1px solid rgba(52,214,124,.4);color:var(--green)}
+  .report-hero h2{font-size:24px;margin:14px 0 6px;letter-spacing:-.4px}
+  .report-meta{color:var(--muted);font-size:13.5px}
+  .report-type-pill{display:inline-block;font-size:12px;font-weight:800;padding:4px 11px;border-radius:999px;background:var(--card2);border:1px solid var(--line2);margin-top:12px}
+
+  .metricgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:560px){.metricgrid{grid-template-columns:1fr 1fr}}
+  .metric{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+  .metric .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-weight:700}
+  .metric .v{font-size:21px;font-weight:850;margin-top:3px;line-height:1.1}
+  .metric .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+  .metric.hi .v{color:var(--green)}
+  .metric.warn .v{color:var(--amber)}
+
+  .sectiontitle{font-size:16px;font-weight:800;margin:6px 0 14px;display:flex;align-items:center;gap:9px}
+  .sectiontitle .dot{width:9px;height:9px;border-radius:50%;background:var(--green)}
+
+  /* Buckets */
+  .modetoggle{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:16px}
+  .modetoggle button{border:0;background:var(--bg2);color:var(--muted);font-weight:700;font-size:13px;padding:9px 16px;cursor:pointer}
+  .modetoggle button.on{background:var(--green);color:#06150d}
+  .bucket{display:grid;grid-template-columns:1fr auto;gap:6px 14px;padding:11px 0;border-top:1px solid var(--line)}
+  .bucket:first-child{border-top:0}
+  .bucket .bn{font-weight:700;font-size:14px}
+  .bucket .bn small{display:block;color:var(--muted);font-weight:500;font-size:11.5px}
+  .bucket .bv{text-align:right;font-variant-numeric:tabular-nums}
+  .bucket .bv b{font-size:15px}
+  .bucket .bv span{color:var(--muted);font-size:12px;display:block}
+  .bucket .btrack{grid-column:1/3;height:9px;background:var(--line);border-radius:5px;overflow:hidden;margin-top:2px}
+  .bucket .bfill{height:100%;border-radius:5px}
+
+  /* Capacity steps */
+  .caprow{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
+  .caprow:first-child{border-top:0}
+  .caprow .lvl{flex:0 0 38px;height:38px;border-radius:10px;background:var(--green-d);border:1px solid rgba(52,214,124,.35);color:var(--green);display:grid;place-items:center;font-weight:900}
+  .caprow .cmid{flex:1}
+  .caprow .cmid .ct{font-weight:800;font-size:14.5px}
+  .caprow .cmid .cs{font-size:12.5px;color:var(--muted)}
+  .caprow .camt{text-align:right}
+  .caprow .camt b{font-size:17px;font-weight:850;color:var(--green)}
+  .caprow .camt span{font-size:11.5px;color:var(--muted);display:block}
+
+  .reco-blurb{font-size:14.5px;margin:8px 0 14px}
+  ul.focus{margin:8px 0 0;padding-left:20px;font-size:14px}
+  ul.focus li{margin-bottom:6px}
+
+  /* Offers */
+  .offers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  @media(max-width:680px){.offers{grid-template-columns:1fr}}
+  .offer{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column}
+  .offer.rec{border-color:var(--green);box-shadow:0 0 0 1px var(--green),0 0 30px rgba(52,214,124,.12)}
+  .offer .tagrec{font-size:11px;font-weight:800;color:#06150d;background:var(--green);border-radius:999px;padding:3px 10px;align-self:flex-start;margin-bottom:10px}
+  .offer h3{font-size:16px;margin:0 0 4px}
+  .offer .price{font-size:24px;font-weight:900;color:var(--green);margin:6px 0}
+  .offer .price s{font-size:14px;color:var(--muted);font-weight:600;margin-left:6px}
+  .offer .price .per{font-size:13px;color:var(--muted);font-weight:600}
+  .offer ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  .offer ul li{margin-bottom:4px}
+
+  .cta-final{background:linear-gradient(135deg,var(--green),var(--green2));border-radius:var(--radius);padding:26px;text-align:center;color:#06150d;margin-bottom:18px}
+  .cta-final h2{color:#06150d;justify-content:center;font-size:22px}
+  .cta-final p{margin:6px auto 16px;max-width:480px;font-weight:600;font-size:15px}
+  .cta-final .btn{background:#06150d;color:var(--green);display:inline-flex}
+  .cta-final .btn:hover{transform:translateY(-1px)}
+
+  .report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:13px;text-align:center}
+  footer b{color:var(--ink)}
+  .disclaimer{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:14px}
+
+  .hidden{display:none!important}
+
+  @media print{
+    body{background:#fff;color:#111}
+    header.hero,.counter,.progress-bar,.steplabel,#form-steps,footer,.report-actions,.modetoggle{display:none!important}
+    #report{display:block!important}
+    .card,.report-hero{box-shadow:none;border-color:#ccc;background:#fff;color:#111}
+    .metric,.offer,.bucket .btrack,.caprow .lvl{background:#f4f4f4}
+    .cat-badge,.report-type-pill,.metric .l,.metric .s,.bucket .bn small,.muted{color:#444!important}
+    .cta-final{background:#eafaf0;color:#111}
+    .cta-final h2,.cta-final p{color:#111}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="brand">🌿 Local Service Pro</span>
+    <h1>Lawn Care Profit &amp; Capacity Benchmark Calculator</h1>
+    <p class="sub">See your real numbers — average $/job, $/hour on the tools, close rate — and add them to the Australian lawn care benchmark. A clearer picture for every operator.</p>
+    <div class="trust"><span>🇦🇺 Built for Aussie operators</span><span>⏱ Takes ~3 minutes</span><span>🌊 A rising tide lifts all boats</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="counter">
+    <div class="big" id="submitCount">—</div>
+    <div style="flex:1">
+      <strong>Help build an honest Australian lawn care benchmark.</strong>
+      <div class="ptrack"><div class="pfill" id="counterFill" style="width:0%"></div></div>
+      <small id="counterNote">For every <b>1,000</b> operators who add their numbers, we publish a fresh benchmark — average $/job, $/hour and more — split by solo &amp; team. The more who share, the harder it is to undercharge the whole industry into the ground.</small>
+    </div>
+  </div>
+
+  <!-- ============ FORM STEPS ============ -->
+  <div id="form-steps">
+    <div class="progress-bar">
+      <div class="seg on" data-seg="1"></div>
+      <div class="seg" data-seg="2"></div>
+      <div class="seg" data-seg="3"></div>
+    </div>
+    <div class="steplabel" id="stepLabel">Step 1 of 3 — Your business type</div>
+
+    <!-- STEP 1: Business type -->
+    <section class="step card" data-step="1">
+      <h2><span class="step-no">1</span> What best describes you?</h2>
+      <p class="hint">This decides whether we build you a <b>Solo Operator</b> or <b>Team Business</b> report.</p>
+      <div class="choices" id="typeChoices">
+        <div class="choice" data-type="solo" onclick="pickType(this)"><div class="ico">👤</div><div class="t">Solo Operator</div><div class="d">Just you, full-time on the tools</div></div>
+        <div class="choice" data-type="parttime" onclick="pickType(this)"><div class="ico">🕒</div><div class="t">Part-Time Operator</div><div class="d">Running it around other commitments</div></div>
+        <div class="choice" data-type="shift" onclick="pickType(this)"><div class="ico">🛠️</div><div class="t">Shift Worker + Lawns</div><div class="d">Still doing shift work, building this up</div></div>
+        <div class="choice" data-type="planning" onclick="pickType(this)"><div class="ico">📈</div><div class="t">Planning to Hire</div><div class="d">Solo now, getting ready for help</div></div>
+        <div class="choice" data-type="staffed" onclick="pickType(this)"><div class="ico">👥</div><div class="t">Already Have Staff</div><div class="d">Casual, part-time or full-time crew</div></div>
+        <div class="choice" data-type="team" onclick="pickType(this)"><div class="ico">🚛</div><div class="t">Team Business</div><div class="d">Multiple workers / building a team</div></div>
+      </div>
+      <div class="btnrow">
+        <button class="btn primary" onclick="goStep(2)">Continue →</button>
+      </div>
+      <div class="formnote" id="note1"></div>
+    </section>
+
+    <!-- STEP 3: Your details (last) -->
+    <section class="step card hidden" data-step="3">
+      <h2><span class="step-no">3</span> Where do we send your report?</h2>
+      <p class="hint">Last step. Add your details and we'll email your personalised benchmark — plus the full Australian industry report once 1,000 operators have taken part.</p>
+      <div class="grid2">
+        <div class="field"><label>First name</label><input id="f_name" placeholder="Jordan" /></div>
+        <div class="field"><label>Email</label><input id="f_email" type="email" placeholder="you@business.com.au" /></div>
+        <div class="field"><label>Phone <span class="opt">(optional)</span></label><input id="f_phone" type="tel" placeholder="0400 000 000" /></div>
+        <div class="field"><label>Business name</label><input id="f_business" placeholder="Jordan's Lawn Care" /></div>
+        <div class="field"><label>Website <span class="opt">(optional)</span></label><input id="f_website" placeholder="yourbusiness.com.au" /></div>
+        <div class="field"><label>State</label>
+          <select id="f_state"><option value="">Select…</option><option>NSW</option><option>VIC</option><option>QLD</option><option>WA</option><option>SA</option><option>TAS</option><option>ACT</option><option>NT</option></select>
+        </div>
+      </div>
+      <div class="field" style="margin-top:14px"><label>Main service area <span class="opt">(suburb / region you mostly work)</span></label><input id="f_area" placeholder="e.g. Northern Brisbane suburbs" /></div>
+
+      <div class="consent">
+        <input type="checkbox" id="chk_consent" />
+        <label for="chk_consent" style="margin:0;font-weight:600">Email me my benchmark results and the Australian lawn care industry report when it's published.</label>
+      </div>
+      <p class="privacy">We'll use your anonymous business data to help build lawn care industry benchmarks. Your individual details will never be published without permission, and we won't sell your data.</p>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goStep(2)">← Back</button>
+        <button class="btn primary" id="generateBtn" onclick="generate()">Get My Lawn Care Benchmark →</button>
+      </div>
+      <div class="formnote" id="note3"></div>
+    </section>
+
+    <!-- STEP 2: Your numbers -->
+    <section class="step card hidden" data-step="2">
+      <h2><span class="step-no">2</span> Your numbers</h2>
+      <p class="hint">Estimates are fine — adjust anything that doesn't fit. Defaults are pre-filled from typical Aussie lawn care operators.</p>
+
+      <div class="sectiontitle"><span class="dot"></span> Revenue &amp; leads</div>
+      <div class="grid2">
+        <div class="field"><label>Annual revenue</label><div class="with-prefix"><span class="pre">$</span><input id="n_revenue" inputmode="numeric" placeholder="80,000" oninput="numFmt(this)" /></div></div>
+        <div class="field"><label>12-month revenue goal <span class="opt">(optional)</span></label><div class="with-prefix"><span class="pre">$</span><input id="n_goal" inputmode="numeric" placeholder="auto: +$40k or $100k" oninput="numFmt(this)" /></div></div>
+        <div class="field"><label>Weekly enquiries <span class="opt">(total)</span></label><input id="n_enquiries" inputmode="numeric" placeholder="3" /></div>
+        <div class="field"><label>Main lead source</label>
+          <select id="n_leadsource"><option>Google</option><option>Facebook</option><option>Word of mouth</option><option>Existing clients</option><option>Paid ads</option><option>Other</option></select>
+        </div>
+        <div class="field"><label>Weekly calls / messages</label><input id="n_calls" inputmode="numeric" placeholder="3" /></div>
+        <div class="field"><label>Weekly website enquiries</label><input id="n_webenq" inputmode="numeric" placeholder="1" /></div>
+      </div>
+
+      <div class="sectiontitle" style="margin-top:18px"><span class="dot"></span> Pricing &amp; jobs</div>
+      <div class="grid3">
+        <div class="field"><label>Average job value</label><div class="with-prefix"><span class="pre">$</span><input id="n_jobvalue" inputmode="numeric" value="120" oninput="numFmt(this)" /></div></div>
+        <div class="field"><label>Target hourly rate</label><div class="with-prefix"><span class="pre">$</span><input id="n_hourly" inputmode="numeric" value="90" oninput="numFmt(this)" /></div></div>
+        <div class="field"><label>Visits / recurring client / yr</label><input id="n_visits" inputmode="numeric" value="20" /></div>
+        <div class="field"><label>Active recurring clients</label><input id="n_activerec" inputmode="numeric" placeholder="25" /></div>
+        <div class="field"><label>Jobs completed / week</label><input id="n_jobsweek" inputmode="numeric" placeholder="15" /></div>
+        <div class="field"><label>Current systems</label>
+          <select id="n_systems"><option>None</option><option>Spreadsheet</option><option>ServiceM8</option><option>SortScape</option><option>Jobber</option><option>Fergus</option><option>GHL</option><option>Other</option></select>
+        </div>
+      </div>
+
+      <div class="grid3" style="margin-top:14px">
+        <div class="field slider"><div class="srow"><label>Close rate</label><span class="sval" id="v_close">40%</span></div><input type="range" id="n_close" min="5" max="95" step="5" value="40" oninput="syncSlider('close')" /></div>
+        <div class="field slider"><div class="srow"><label>Become recurring</label><span class="sval" id="v_recurring">40%</span></div><input type="range" id="n_recurring" min="0" max="100" step="5" value="40" oninput="syncSlider('recurring')" /></div>
+        <div class="field slider"><div class="srow"><label>Annual churn</label><span class="sval" id="v_churn">40%</span></div><input type="range" id="n_churn" min="0" max="80" step="5" value="40" oninput="syncSlider('churn')" /></div>
+      </div>
+
+      <div class="sectiontitle" style="margin-top:18px"><span class="dot"></span> Your time, staff &amp; admin</div>
+      <div class="grid3">
+        <div class="field"><label>Owner hours on tools / wk</label><input id="n_ownerhours" inputmode="numeric" placeholder="35" /></div>
+        <div class="field"><label>Admin hours / week</label><input id="n_adminhours" inputmode="numeric" placeholder="8" /></div>
+        <div class="field"><label>Number of staff</label><input id="n_staffcount" inputmode="numeric" value="0" /></div>
+        <div class="field"><label>Staff hours / week</label><input id="n_staffhours" inputmode="numeric" placeholder="0" /></div>
+        <div class="field"><label>Staff hourly wage</label><div class="with-prefix"><span class="pre">$</span><input id="n_staffwage" inputmode="numeric" placeholder="35" oninput="numFmt(this)" /></div></div>
+        <div class="field"><label>VA / admin hours / week</label><input id="n_vahours" inputmode="numeric" value="0" /></div>
+      </div>
+
+      <details class="accordion" style="margin-top:18px">
+        <summary>Advanced assumptions (optional — tap to adjust)</summary>
+        <div class="acc-body">
+          <div class="grid3">
+            <div class="field"><label>VA cost / hour</label><div class="with-prefix"><span class="pre">$</span><input id="a_vacost" inputmode="numeric" value="20" oninput="numFmt(this)" /></div></div>
+            <div class="field"><label>Part-time capacity (hrs/wk)</label><input id="a_ptcap" inputmode="numeric" value="25" /></div>
+            <div class="field"><label>Part-time efficiency</label><div class="with-suffix"><span class="suf">%</span><input id="a_pteff" inputmode="numeric" value="75" /></div></div>
+            <div class="field"><label>Working weeks / year</label><input id="a_weeks" inputmode="numeric" value="48" /></div>
+            <div class="field"><label>Super guarantee</label><div class="with-suffix"><span class="suf">%</span><input id="a_super" inputmode="numeric" value="12" /></div></div>
+            <div class="field"><label>Default VA hours model</label><input id="a_vamodel" value="10" inputmode="numeric" /><div class="tip">Used if your VA hours are 0 — shows the upside of adding VA support.</div></div>
+          </div>
+          <div class="grid2" style="margin-top:6px">
+            <div class="field"><label>Marketing budget target</label><div class="with-suffix"><span class="suf">%</span><input id="a_mktg" inputmode="numeric" value="3" /></div></div>
+            <div class="field"><label>Systems &amp; tech budget target</label><div class="with-suffix"><span class="suf">%</span><input id="a_sys" inputmode="numeric" value="2" /></div></div>
+          </div>
+        </div>
+      </details>
+
+      <div class="btnrow">
+        <button class="btn ghost" onclick="goStep(1)">← Back</button>
+        <button class="btn primary" onclick="goStep(3)">Continue →</button>
+      </div>
+      <div class="formnote" id="note2"></div>
+    </section>
+  </div>
+
+  <!-- ============ REPORT ============ -->
+  <div id="report">
+
+    <div class="report-hero">
+      <span class="cat-badge" id="catBadge">—</span>
+      <h2 id="reportTitle">Your Lawn Care Benchmark</h2>
+      <div class="report-meta" id="reportMeta"></div>
+      <div><span class="report-type-pill" id="reportTypePill"></span></div>
+    </div>
+
+    <!-- One-page snapshot (screenshot target) -->
+    <div class="card">
+      <div class="sectiontitle"><span class="dot"></span> Current snapshot</div>
+      <div class="metricgrid" id="snapshotGrid"></div>
+    </div>
+
+    <!-- Rates spotlight — the heart of the industry benchmark -->
+    <div class="card">
+      <div class="sectiontitle"><span class="dot"></span> Your rates — the numbers the industry report is built on</div>
+      <div class="metricgrid" id="ratesGrid"></div>
+      <div class="quote">These two numbers are the heart of the benchmark. When operators charge too little here, profit quietly drains out of the whole industry. Sharing yours helps set a fairer floor — <b>a rising tide lifts all boats.</b></div>
+    </div>
+
+    <div class="card">
+      <div class="sectiontitle"><span class="dot"></span> Growth potential</div>
+      <div class="metricgrid" id="growthGrid"></div>
+      <div class="quote">"Better leads give you the confidence to increase prices and replace low-value jobs." — the goal isn't just more jobs, it's <b>better</b> jobs.</div>
+      <div id="growthNarrative" style="font-size:14.5px"></div>
+    </div>
+
+    <!-- Profit buckets -->
+    <div class="card">
+      <div class="sectiontitle"><span class="dot"></span> Profit-first allocation</div>
+      <p class="hint" style="margin-bottom:10px">Where every $100 of revenue should go for a healthy lawn care business. Staff wages get their own bucket — so you can see whether labour is actually profitable.</p>
+      <div class="modetoggle">
+        <button id="mode_solo" onclick="setMode('solo')">Solo / owner-only</button>
+        <button id="mode_team" onclick="setMode('team')">Team / growth</button>
+      </div>
+      <div id="bucketList"></div>
+      <div class="quote amber">"Staff wages need their own bucket so you can see whether labour is actually profitable."</div>
+    </div>
+
+    <!-- Capacity stack -->
+    <div class="card">
+      <div class="sectiontitle"><span class="dot"></span> Capacity stack — how far your hours can stretch</div>
+      <div id="capacityStack"></div>
+      <div class="quote">"A part-time employee increases production capacity — but only if the lead flow exists to fill the schedule." A VA protects your highest-value hours by removing admin drag.</div>
+    </div>
+
+    <!-- Insight (not a sales pitch) -->
+    <div class="card">
+      <div class="sectiontitle"><span class="dot"></span> What your numbers suggest</div>
+      <div class="reco-blurb" id="recoBlurb"></div>
+      <strong style="font-size:14px">Where your attention is best spent:</strong>
+      <ul class="focus" id="recoFocus"></ul>
+      <div class="quote" id="recoQuote"></div>
+    </div>
+
+    <!-- Industry benefit / rising tide -->
+    <div class="cta-final">
+      <h2>🌊 Your numbers are now part of the benchmark</h2>
+      <p>When enough operators share real numbers — average $/job, $/hour on the tools, close rates — we can publish an honest Australian benchmark. That's how we stop the race to the bottom, where people undercharge until no one makes a profit.</p>
+      <p style="margin-top:10px">Know another lawn care operator? Send them the calculator. The more who add their numbers, the sharper and fairer the benchmark gets — for everyone.</p>
+    </div>
+
+    <div class="card">
+      <div class="report-actions">
+        <button class="btn ghost" onclick="window.print()">🖨 Save / screenshot my report</button>
+        <button class="btn ghost" onclick="editAnswers()">✎ Edit my answers</button>
+      </div>
+      <p class="disclaimer">Benchmark figures are indicative target ranges for Australian lawn &amp; garden care businesses, refreshed for every 1,000 operator submissions. This tool provides general guidance only and is not financial, tax or accounting advice — always confirm with a registered accountant or BAS agent.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="wrap">
+  <p>🌿 <b>Local Service Pro</b> — building an honest benchmark for the Australian lawn care industry, so every operator can price with confidence.<br/>Your data stays anonymous. A rising tide lifts all boats. © <span id="yr"></span> Local Service Pro.</p>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — wire up your destinations here
+   ============================================================
+   SUBMIT_ENDPOINT : URL that accepts a JSON POST of the full submission
+                     (lead + numbers + calculated results). Works with
+                     Formspree, a Google Apps Script web app, Make/Zapier
+                     webhook, or your own API.
+                     Leave "" for DEMO mode (saves to localStorage).
+   ============================================================ */
+const CONFIG = {
+  SUBMIT_ENDPOINT: "",
+  REPORT_BATCH: 1000,
+  BASE_COUNT: 0
+};
+
+/* ---------- Profit-first target models ---------- */
+const BUCKETS = [
+  { key:"owner",     name:"Owner Pay",                 desc:"Owner wage / drawings",                                  color:"#34d67c" },
+  { key:"staff",     name:"Staff Wages",               desc:"Employee wages, casual labour, super, payroll",          color:"#4aa3ff" },
+  { key:"opex",      name:"Equipment & Running Costs",  desc:"Mowers, fuel, insurance, rego, tools, repairs, trailer, materials", color:"#7ad08f" },
+  { key:"tax",       name:"Tax / GST Buffer",          desc:"BAS, GST, income tax buffer",                            color:"#f3b73f" },
+  { key:"profit",    name:"Profit",                    desc:"True business profit",                                   color:"#2fbf71" },
+  { key:"marketing", name:"Marketing",                 desc:"Website, Google Business Profile, local SEO, ads",       color:"#b07cf0" },
+  { key:"systems",   name:"Systems & Tech",            desc:"CRM, automations, scheduling & admin software, VA tools", color:"#9aa7a0" }
+];
+const MODELS = {
+  solo: { label:"Solo / owner-only", targets:{owner:50,staff:0,opex:20,tax:15,profit:10,marketing:3,systems:2} },
+  team: { label:"Team / growth",     targets:{owner:45,staff:15,opex:18,tax:12,profit:5, marketing:3,systems:2} }
+};
+
+const CATEGORIES = {
+  foundation:{ name:"Foundation Stage", icon:"🧱",
+    blurb:"You're early days — most work comes from word of mouth and Facebook. The biggest lever is being easy to find and trust locally, so you're competing on quality rather than just being the cheapest.",
+    focus:["Make it easy for local customers to find and trust you.","Ask happy clients for reviews — trust is what lets you charge properly.","Capture every enquiry so none go cold.","Know where your leads actually come from."],
+    quote:"\"Do not buy the bigger mower before you have the lead flow to fill it.\"" },
+  leadflow:{ name:"Lead Flow Stage", icon:"📡",
+    blurb:"You've got some presence but enquiries are inconsistent and mixed-quality. The lever is attracting higher-intent local customers, so you can be choosier about the jobs you take and what you charge.",
+    focus:["Aim for higher-intent local enquiries, not just whoever messages first.","Make it simple for people to enquire and book.","Grow reviews to win trust before the first call.","Track lead sources so you double down on what works."],
+    quote:"\"Better leads give you the confidence to increase prices and replace low-value jobs.\"" },
+  systems:{ name:"Systems Stage", icon:"⚙️",
+    blurb:"You're getting leads but losing time and jobs to admin, slow follow-up and missed messages. Tightening your day-to-day systems protects both your time and your margins.",
+    focus:["Respond fast — slow replies quietly cost you jobs.","Follow up every quote.","Ask for a review after each completed job.","Keep your numbers visible so you can see what's working."],
+    quote:"\"Systems stop admin becoming your third job.\"" },
+  capacity:{ name:"Capacity Stage", icon:"🚀",
+    blurb:"You have the demand but not enough production capacity — your schedule is full or close to it. This is the moment to sharpen pricing, add help, and route jobs better so you can say yes to more good work.",
+    focus:["Lift pricing and replace low-value jobs with better ones.","Add a part-time worker to grow weekly capacity (with the lead flow to fill it).","Protect your highest-value hours on the tools — hand off admin.","Tighten routing so less time is lost between jobs."],
+    quote:"\"A VA helps protect the owner's highest-value hours by removing admin and communication drag.\"" },
+  teamgrowth:{ name:"Team Growth Stage", icon:"🚛",
+    blurb:"You're ready to reduce owner hours on the tools or build toward a second ute. The focus now is knowing your staff are actually profitable, and strengthening lead flow before adding more people.",
+    focus:["Keep staff wages in their own bucket so you can see if labour is profitable.","Strengthen lead flow before adding more staff.","Track jobs and people so growth doesn't become chaos.","Plan the pathway to a second ute / reduced owner hours."],
+    quote:"\"Staff wages need their own bucket so you can see whether labour is actually profitable.\"" }
+};
+
+/* ---------- State / helpers ---------- */
+let state = { type:null, mode:"solo", results:null };
+const $ = id => document.getElementById(id);
+function numFmt(el){
+  const end = el.selectionStart===el.value.length;
+  const v = parseFloat(el.value.replace(/[^0-9.]/g,""))||0;
+  el.value = v? v.toLocaleString("en-AU",{maximumFractionDigits:0}) : "";
+  if(end) el.selectionStart=el.selectionEnd=el.value.length;
+}
+const num = id => parseFloat((($(id)||{}).value||"").replace(/[^0-9.]/g,""))||0;
+const val = id => (($(id)||{}).value||"").trim();
+const fmt = n => Math.round(n).toLocaleString("en-AU");
+const money = n => "$"+fmt(n);
+const moneyK = n => n>=1000? "$"+(n/1000).toLocaleString("en-AU",{maximumFractionDigits:n>=10000?0:1})+"k" : "$"+fmt(n);
+const pct = n => Math.round(n)+"%";
+
+function pickType(el){
+  document.querySelectorAll(".choice").forEach(c=>c.classList.remove("active"));
+  el.classList.add("active");
+  state.type = el.dataset.type;
+}
+function syncSlider(k){ $("v_"+k).textContent = $("n_"+k).value+"%"; }
+
+const TYPE_LABEL = {solo:"Solo Operator",parttime:"Part-Time Operator",shift:"Shift Worker + Lawn Care",planning:"Planning to Hire",staffed:"Already Have Staff",team:"Team Business"};
+const isTeamType = t => ["staffed","team"].includes(t);
+const isSoloReport = t => ["solo","parttime","shift"].includes(t);
+
+/* ---------- Wizard ---------- */
+function goStep(n){
+  if(n===2 && !state.type){ return showNote("note1","Please pick the option that best describes you."); }
+  if(n===3 && !num("n_revenue")){ return showNote("note2","Please add your annual revenue so we can build your benchmark."); }
+  document.querySelectorAll(".step").forEach(s=>s.classList.toggle("hidden", s.dataset.step!=String(n)));
+  document.querySelectorAll(".progress-bar .seg").forEach(s=>s.classList.toggle("on", +s.dataset.seg<=n));
+  $("stepLabel").textContent = `Step ${n} of 3 — ${["","Your business type","Your numbers","Your details"][n]}`;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function showNote(id,msg){ const e=$(id); e.className="formnote err"; e.textContent=msg; return false; }
+
+/* ---------- Compute ---------- */
+function compute(){
+  const weeks   = num("a_weeks")||48;
+  const superR  = (num("a_super")||12)/100;
+  const revenue = num("n_revenue");
+  const jobValue= num("n_jobvalue")||120;
+  const hourly  = num("n_hourly")||90;
+  const visits  = num("n_visits")||20;
+  const close   = (num("n_close")||40)/100;
+  const recur   = (num("n_recurring")||40)/100;
+  const churn   = (num("n_churn")||40)/100;
+  const enquiries = num("n_enquiries");
+  const activeRec = num("n_activerec");
+  const jobsWeek  = num("n_jobsweek");
+  const ownerHrs  = num("n_ownerhours")||35;
+  const adminHrs  = num("n_adminhours");
+  const staffCount= num("n_staffcount");
+  const staffHrs  = num("n_staffhours");
+  const staffWage = num("n_staffwage")||35;
+  const vaHrsIn   = num("n_vahours");
+  const vaCost    = num("a_vacost")||20;
+  const ptCap     = num("a_ptcap")||25;
+  const ptEff     = (num("a_pteff")||75)/100;
+  const vaModel   = num("a_vamodel")||10;
+
+  const hoursPerJob = jobValue/Math.max(hourly,1);
+
+  // Current
+  const revPerHour  = ownerHrs>0 ? revenue/(ownerHrs*weeks) : 0;
+  const jobsPossible= hoursPerJob>0 ? ownerHrs/hoursPerJob : 0;
+  const capUtil     = jobsPossible>0 ? jobsWeek/jobsPossible : 0;
+
+  // Level 1 — owner only
+  const L1weekly = ownerHrs*hourly;
+  const L1annual = L1weekly*weeks;
+
+  // Level 2 — + part-time employee
+  const extraHrs    = ptCap*ptEff;
+  const extraJobsWk = hoursPerJob>0 ? extraHrs/hoursPerJob : 0;
+  const L2extraAnnual = extraJobsWk*jobValue*weeks;
+  const staffCostAnnual = ptCap*staffWage*(1+superR)*weeks;
+  const L2net = L2extraAnnual - staffCostAnnual;
+  const L2annual = L1annual + L2extraAnnual;
+
+  // Level 3 — + VA / admin
+  const vaHrs = vaHrsIn>0 ? vaHrsIn : vaModel;
+  const adminRemoved = Math.min(vaHrs, adminHrs>0?adminHrs:vaHrs);
+  const ownerRecovered = adminRemoved;
+  const vaExtraJobsWk = hoursPerJob>0 ? ownerRecovered/hoursPerJob : 0;
+  const L3extraAnnual = vaExtraJobsWk*jobValue*weeks;
+  const vaCostAnnual = vaHrs*vaCost*weeks;
+  const L3net = L3extraAnnual - vaCostAnnual;
+  const L3annual = L2annual + L3extraAnnual;
+
+  // Growth
+  let goal = num("n_goal");
+  if(!goal) goal = Math.max(100000, Math.round((revenue*1.5)/1000)*1000, revenue+40000);
+  const gap = Math.max(0, goal-revenue);
+  const recVal120 = 120*visits, recVal100 = 100*visits, recValActual = jobValue*visits;
+  const clients120 = recVal120>0? Math.ceil(gap/recVal120):0;
+  const clients100 = recVal100>0? Math.ceil(gap/recVal100):0;
+  const clientsActual = recValActual>0? Math.ceil(gap/recValActual):0;
+  const churnReplace = Math.round(activeRec*churn);
+  const newRecurNeeded = clientsActual + churnReplace;
+  const enqDenom = weeks*close*recur;
+  const enqNeededTotalWk = enqDenom>0 ? newRecurNeeded/enqDenom : 0;
+  const extraEnqWk = Math.max(0, enqNeededTotalWk - enquiries);
+  const extraJobsNeededWk = weeks>0 ? gap/jobValue/weeks : 0;
+
+  // Budgets
+  const mktgTarget = revenue*(num("a_mktg")||3)/100;
+  const sysTarget  = revenue*(num("a_sys")||2)/100;
+  const sysOfferAnnual = 197*12;
+  const canJustify = revenue>=50000 || gap>=20000;
+
+  return {
+    weeks,revenue,jobValue,hourly,visits,close,recur,churn,enquiries,activeRec,jobsWeek,ownerHrs,adminHrs,
+    staffCount,staffHrs,staffWage,vaHrs,vaCost,hoursPerJob,
+    revPerHour,jobsPossible,capUtil,
+    L1annual,L1weekly,extraHrs,extraJobsWk,L2extraAnnual,staffCostAnnual,L2net,L2annual,
+    adminRemoved,ownerRecovered,vaExtraJobsWk,L3extraAnnual,vaCostAnnual,L3net,L3annual,
+    goal,gap,recVal120,recVal100,recValActual,clients120,clients100,clientsActual,churnReplace,
+    extraEnqWk,extraJobsNeededWk,mktgTarget,sysTarget,sysOfferAnnual,canJustify
+  };
+}
+
+/* ---------- Category logic ---------- */
+function categorise(r){
+  const hasWebsite = !!val("f_website");
+  const systems = val("n_systems");
+  const weakSystems = ["None","Spreadsheet",""].includes(systems);
+  const lowLeads = r.enquiries>0 ? r.enquiries < 4 : true;
+  const highAdmin = r.adminHrs >= 7;
+  const teamish = r.staffCount>0 || isTeamType(state.type) || state.type==="planning";
+
+  if(!hasWebsite || (weakSystems && lowLeads && r.revenue < 80000)) return "foundation";
+  if(lowLeads) return "leadflow";
+  if(highAdmin && weakSystems) return "systems";
+  if(r.capUtil >= 0.85) return "capacity";
+  if(teamish && r.revenue >= 120000) return "teamgrowth";
+  if(highAdmin) return "systems";
+  return r.capUtil>=0.6 ? "capacity" : "leadflow";
+}
+
+/* ---------- Render report ---------- */
+function metric(l,v,s,cls){ return `<div class="metric ${cls||''}"><div class="l">${l}</div><div class="v">${v}</div>${s?`<div class="s">${s}</div>`:''}</div>`; }
+
+function renderReport(r,catKey){
+  const cat = CATEGORIES[catKey];
+  const soloReport = isSoloReport(state.type);
+  state.mode = (soloReport && r.staffCount===0) ? "solo" : (isTeamType(state.type)||r.staffCount>0 ? "team":"solo");
+
+  $("catBadge").innerHTML = `${cat.icon} ${cat.name}`;
+  $("reportTitle").textContent = (val("f_business")||val("f_name")||"Your") + (val("f_business")?"":"'s") + " Lawn Care Benchmark";
+  $("reportMeta").textContent = `${TYPE_LABEL[state.type]} · ${money(r.revenue)}/yr · ${val("f_area")||val("f_state")||"Australia"}`;
+  $("reportTypePill").textContent = soloReport ? "🧍 Solo Operator Report" : "👥 Team Business Report";
+
+  // Snapshot
+  $("snapshotGrid").innerHTML =
+    metric("Current revenue", moneyK(r.revenue), `${val("n_leadsource")} is your main lead source`) +
+    metric("Weekly enquiries", r.enquiries||"—", "total new leads / week") +
+    metric("Close rate", pct(r.close*100), `${pct(r.recur*100)} become recurring`) +
+    metric("Active recurring clients", r.activeRec||"—", `${pct(r.churn*100)} annual churn`) +
+    metric("Revenue per hour", r.revPerHour?money(r.revPerHour):"—", `target ${money(r.hourly)}/hr`, r.revPerHour && r.revPerHour < r.hourly?"warn":"hi") +
+    metric("Capacity used", r.jobsPossible?pct(Math.min(r.capUtil,2)*100):"—", `${fmt(r.jobsWeek)} of ~${fmt(r.jobsPossible)} jobs/wk`, r.capUtil>=0.85?"warn":"");
+
+  // Rates spotlight — the headline industry numbers
+  $("ratesGrid").innerHTML =
+    metric("Average $ / job", money(r.jobValue), "your typical job value", "hi") +
+    metric("$ / hour on the tools", r.revPerHour?money(r.revPerHour):"—", `what each working hour really earns (target ${money(r.hourly)})`, r.revPerHour && r.revPerHour < r.hourly?"warn":"hi") +
+    metric("Effective hourly target", money(r.hourly), "the rate you're aiming for");
+
+  // Growth
+  $("growthGrid").innerHTML =
+    metric("12-month goal", moneyK(r.goal), "your target revenue", "hi") +
+    metric("Revenue gap", moneyK(r.gap), "to bridge", "warn") +
+    metric("Recurring clients needed", r.clientsActual, `net new, at ${money(r.jobValue)}/job × ${r.visits} visits`) +
+    metric("Extra weekly enquiries", "+"+ (r.extraEnqWk>=1?Math.ceil(r.extraEnqWk):r.extraEnqWk.toFixed(1)), "to hit the goal") +
+    metric("Marketing budget (3%)", moneyK(r.mktgTarget), "to drive those leads") +
+    metric("Systems budget (2%)", moneyK(r.sysTarget), `vs ${money(r.sysOfferAnnual)}/yr for LSP`);
+
+  $("growthNarrative").innerHTML =
+    `To bridge <b>${moneyK(r.gap)}</b>, you need roughly <b>${r.clients120} retained recurring clients</b> at $120/job (20 visits/yr = $2,400 each), or about <b>${r.clients100} clients</b> at $100/job ($2,000 each). ` +
+    `That's around <b>+${r.extraEnqWk>=1?Math.ceil(r.extraEnqWk):r.extraEnqWk.toFixed(1)} quality enquiries per week</b> (allowing for ${pct(r.churn*100)} churn on your existing ${r.activeRec||0} clients) and about <b>+${r.extraJobsNeededWk.toFixed(1)} jobs/week</b>. ` +
+    `Most of that gap closes faster through <b>better-paying jobs and higher-intent leads</b> than through simply working more hours. A healthy book sets aside about <b>${moneyK(r.mktgTarget)}</b> for marketing and <b>${moneyK(r.sysTarget)}</b> for systems each year — guide rails, not a sales pitch.`;
+
+  renderBuckets();
+  setMode(state.mode);
+
+  // Capacity stack
+  $("capacityStack").innerHTML = `
+    ${capRow("1","Owner only",`${fmt(r.ownerHrs)} tool hrs/wk → ~${fmt(r.jobsPossible)} jobs/wk`, r.L1annual, "annual capacity")}
+    ${capRow("2","+ Part-time employee",`+${r.extraHrs.toFixed(1)} productive hrs (${fmt(r.extraJobsWk.toFixed(1))} extra jobs/wk) · staff cost ${moneyK(r.staffCostAnnual)}/yr`, r.L2annual, `net +${moneyK(r.L2net)} after wages`)}
+    ${capRow("3","+ VA / admin support",`${fmt(r.adminRemoved)} admin hrs removed → ~${r.vaExtraJobsWk.toFixed(1)} more jobs/wk · VA cost ${moneyK(r.vaCostAnnual)}/yr`, r.L3annual, `net +${moneyK(r.L3net)} after VA`)}
+    ${capRow("★","Lead flow filled",`When marketing keeps the schedule full across all three levels`, r.L3annual, "full potential")}
+  `;
+
+  // Recommendation
+  $("recoBlurb").innerHTML = `<b>${cat.icon} ${cat.name}.</b> ${cat.blurb}`;
+  $("recoFocus").innerHTML = cat.focus.map(f=>`<li>${f}</li>`).join("");
+  $("recoQuote").textContent = cat.quote;
+
+  // Solo vs team framing line (insight, not a pitch)
+  const frame = soloReport
+    ? "Solo focus: lift your hourly rate, win better leads, replace low-value jobs, remove admin, and build recurring clients — so reaching $100k part-time becomes realistic."
+    : "Team focus: keep staff wages in their own bucket, check whether your crew is profitable, and strengthen lead flow before hiring more.";
+  $("recoBlurb").innerHTML += `<div class="quote" style="margin-top:14px">${frame}</div>`;
+}
+function capRow(lvl,title,sub,amt,note){
+  return `<div class="caprow"><div class="lvl">${lvl}</div><div class="cmid"><div class="ct">${title}</div><div class="cs">${sub}</div></div><div class="camt"><b>${moneyK(amt)}</b><span>${note}</span></div></div>`;
+}
+function renderBuckets(){
+  const r = state.results, m = MODELS[state.mode];
+  $("bucketList").innerHTML = BUCKETS.map(b=>{
+    const t=m.targets[b.key], dollars=r.revenue*t/100;
+    return `<div class="bucket"><div class="bn">${b.name}<small>${b.desc}</small></div>
+      <div class="bv"><b>${t}%</b><span>${moneyK(dollars)}/yr</span></div>
+      <div class="btrack"><div class="bfill" style="width:${t}%;background:${b.color}"></div></div></div>`;
+  }).join("");
+}
+function setMode(m){
+  state.mode=m;
+  $("mode_solo").classList.toggle("on",m==="solo");
+  $("mode_team").classList.toggle("on",m==="team");
+  renderBuckets();
+}
+
+/* ---------- Submit ---------- */
+async function generate(){
+  if(!val("f_name") || !val("f_email")) return showNote("note3","Please add your first name and email so we can send your report.");
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("f_email"))) return showNote("note3","That email doesn't look right — please check it.");
+  if(!$("chk_consent").checked) return showNote("note3","Please tick the consent box so we can email your report.");
+  if(!num("n_revenue")) return showNote("note2","Please go back to step 2 and add your annual revenue.");
+
+  const r = compute();
+  state.results = r;
+  const catKey = categorise(r);
+  const cat = CATEGORIES[catKey];
+  const soloReport = isSoloReport(state.type);
+
+  const segments = [
+    soloReport?"Solo Operator":"Team Business",
+    state.type==="shift"?"Shift Worker":null,
+    {foundation:"Foundation Stage",leadflow:"Lead Flow Stage",systems:"Systems Stage",capacity:"Capacity Stage",teamgrowth:"Team Growth Stage"}[catKey]
+  ].filter(Boolean);
+
+  const payload = {
+    submissionId: "lcb_"+Date.now().toString(36)+"_"+Math.floor(num("n_revenue")).toString(36),
+    timestamp: new Date().toISOString(),
+    source: "lawn-care-profit-capacity-benchmark",
+    consent: true,
+    lead:{ firstName:val("f_name"), email:val("f_email"), phone:val("f_phone"), business:val("f_business"),
+           website:val("f_website"), state:val("f_state"), serviceArea:val("f_area") },
+    business:{
+      businessType: state.type, businessTypeLabel: TYPE_LABEL[state.type],
+      annualRevenue:r.revenue, weeklyEnquiries:r.enquiries, mainLeadSource:val("n_leadsource"),
+      weeklyCalls:num("n_calls"), weeklyWebsiteEnquiries:num("n_webenq"),
+      averageJobValue:r.jobValue, targetHourlyRate:r.hourly, visitsPerRecurringClient:r.visits,
+      closeRate:r.close, recurringConversionRate:r.recur, churnRate:r.churn,
+      activeRecurringClients:r.activeRec, jobsPerWeek:r.jobsWeek,
+      ownerToolHours:r.ownerHrs, adminHours:r.adminHrs,
+      staffCount:r.staffCount, staffHours:r.staffHrs, staffWage:r.staffWage,
+      vaHours:num("n_vahours"), vaCost:r.vaCost, systemsUsed:val("n_systems")
+    },
+    calculated:{
+      revenuePerHour:Math.round(r.revPerHour), capacityUtilisation:+r.capUtil.toFixed(2),
+      revenueGoal:r.goal, revenueGap:r.gap,
+      recurringClientsNeeded:r.clientsActual, recurringClientsNeeded_at120:r.clients120, recurringClientsNeeded_at100:r.clients100,
+      extraWeeklyEnquiriesNeeded:+r.extraEnqWk.toFixed(1),
+      currentAnnualCapacity:Math.round(r.L1annual),
+      capacityWithPartTime:Math.round(r.L2annual),
+      capacityWithVA:Math.round(r.L3annual),
+      marketingBudgetTarget:Math.round(r.mktgTarget), systemsBudgetTarget:Math.round(r.sysTarget),
+      averageJobValue:r.jobValue, revenuePerHourOnTools:Math.round(r.revPerHour),
+      benchmarkCategory:cat.name, reportType: soloReport?"solo":"team"
+    },
+    benchmarkSummary:{
+      business:val("f_business")||val("f_name"), revenue:money(r.revenue),
+      dollarsPerJob:money(r.jobValue), dollarsPerHourOnTools:money(r.revPerHour),
+      category:cat.name, reportType: soloReport?"solo":"team"
+    },
+    emailSegments: segments
+  };
+
+  const btn=$("generateBtn"); btn.disabled=true; btn.textContent="Building your report…";
+  let ok=true;
+  if(CONFIG.SUBMIT_ENDPOINT){
+    try{ const res=await fetch(CONFIG.SUBMIT_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}); ok=res.ok; }
+    catch(e){ ok=false; }
+  } else {
+    const all=JSON.parse(localStorage.getItem("lsp_lcb_subs")||"[]"); all.push(payload); localStorage.setItem("lsp_lcb_subs",JSON.stringify(all));
+  }
+  btn.disabled=false; btn.textContent="Get My Lawn Care Benchmark →";
+  if(!ok) return showNote("note3","Something went wrong sending your details. Please try again in a moment.");
+
+  bumpCount(); refreshCounter();
+  renderReport(r,catKey);
+  $("form-steps").classList.add("hidden");
+  $("report").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function editAnswers(){
+  $("report").style.display="none";
+  $("form-steps").classList.remove("hidden");
+  goStep(2);
+}
+
+/* ---------- Counter ---------- */
+function getCount(){ return parseInt(localStorage.getItem("lsp_lcb_count")||"0",10); }
+function bumpCount(){ const n=getCount()+1; localStorage.setItem("lsp_lcb_count",String(n)); }
+function refreshCounter(){
+  const c = CONFIG.BASE_COUNT + getCount();
+  $("submitCount").textContent = fmt(c);
+  const into = c % CONFIG.REPORT_BATCH, rem = CONFIG.REPORT_BATCH - into;
+  $("counterFill").style.width = (into/CONFIG.REPORT_BATCH*100)+"%";
+  $("counterNote").innerHTML = `For every <b>${fmt(CONFIG.REPORT_BATCH)}</b> operators who add their numbers, we publish a fresh benchmark — average $/job, $/hour and more, split by solo &amp; team. <b>${fmt(rem)}</b> to go until the next edition.`;
+}
+
+/* ---------- init ---------- */
+$("yr").textContent = new Date().getFullYear();
+refreshCounter();
+</script>
+</body>
+</html>
